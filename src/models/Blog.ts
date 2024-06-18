@@ -4,8 +4,8 @@ export interface IBlogPost extends Document {
   title: string;
   content: string;
   authorId: mongoose.Schema.Types.ObjectId;
-  // createdAt: Date;
-  // updatedAt: Date;
+  createdAt: Date;
+  updatedAt: Date;
   images?: string[];
   videos?: string[];
 }
@@ -18,8 +18,8 @@ const blogPostSchema: Schema<IBlogPost> = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-  // createdAt: { type: Date, default: Date.now },
-  // updatedAt: { type: Date, default: Date.now },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
   images: [String],
   videos: [String],
 });

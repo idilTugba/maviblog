@@ -9,11 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@apollo/client": "^3.10.4",
-    "apollo-server-micro": "^3.13.0",
+    "@apollo/server": "^4.10.4",
+    "@as-integrations/next": "^3.0.0",
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "graphql": "^16.8.1",
+    "graphql-tag": "^2.12.6",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.1",
     "next": "14.2.3",
