@@ -16,14 +16,25 @@
   }
 }
 
+html, body{
+  height: 100%;
+}
+
+p{
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  background-color: #0e1514;
+  color: #fbfff4;
+  /* color: rgb(var(--foreground-rgb)); */
+  /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
 }
 
 @layer utilities {

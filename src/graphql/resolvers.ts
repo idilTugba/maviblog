@@ -10,7 +10,7 @@ interface IContext {
 
 export const resolvers: IResolvers = {
   Query: {
-    blogPosts: async () => {
+    allPosts: async () => {
       return await BlogPost.find();
     },
     blogPost: async (_: unknown, { id }: { id: string }) => {
@@ -42,7 +42,7 @@ export const resolvers: IResolvers = {
       const valid = await bcrypt.compare(password, user.password);
       if (!valid) throw new Error("Invalid password");
       const token = jwt.sign(
-        { id: user._id, username: user.username },
+        { id: user._id, fullname: user.fullname },
         process.env.JWT_SECRET as string
       );
       return token;

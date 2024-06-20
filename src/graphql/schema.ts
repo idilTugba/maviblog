@@ -4,6 +4,7 @@ export const typeDefs = gql`
   type User {
     id: ID!
     username: String!
+    fullname: String!
     password: String!
   }
 
@@ -19,7 +20,7 @@ export const typeDefs = gql`
   }
 
   type Query {
-    blogPosts: [BlogPost]
+    allPosts: [BlogPost]
     blogPost(id: ID!): BlogPost
   }
 
