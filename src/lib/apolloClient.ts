@@ -1,8 +1,11 @@
-// import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+import { registerApolloClient } from "@apollo/experimental-nextjs-app-support";
 
-// const client = new ApolloClient({
-//   uri: "http://localhost:3000/api/graphql",
-//   cache: new InMemoryCache(),
-// });
-
-// export default client;
+export const { getClient } = registerApolloClient(() => {
+  return new ApolloClient({
+    cache: new InMemoryCache(),
+    link: new HttpLink({
+      uri: "http://localhost:3000/api/graphql",
+    }),
+  });
+});

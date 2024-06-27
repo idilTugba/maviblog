@@ -26,6 +26,6 @@ const blogPostSchema: Schema<IBlogPost> = new mongoose.Schema({
 
 const BlogPost =
   mongoose.models.BlogPost ||
-  mongoose.model<IBlogPost>("BlogPost", blogPostSchema);
+  mongoose.model<IBlogPost>("posts", blogPostSchema);
 
 export default BlogPost;
