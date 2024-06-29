@@ -2,7 +2,7 @@
 import { gql, useQuery } from "@apollo/client";
 
 const GET_CURRENT_USER = gql`
-  query {
+  query GetCurrentUser {
     currentUser @client {
       id
       username
@@ -11,20 +11,20 @@ const GET_CURRENT_USER = gql`
   }
 `;
 
-const Profile = () => {
+export default function Profile() {
   const { data, loading, error } = useQuery(GET_CURRENT_USER);
+  console.log(data);
+  if (!data || !data.currentUser) return <p>No user data</p>;
 
-  const user = data.currentUSer;
+  const currentUser = data.currentUser;
 
-  if (loading) return loading;
-  if (error) return error;
+  if (loading) return <p>{loading}</p>;
+  if (error) return <p>{error.message}</p>;
 
   return (
     <div>
-      <p>{user.username}</p>
-      <p>{user.fullname}</p>
+      <p>Username: {currentUser.username}</p>
+      <p>Fullname: {currentUser.fullname}</p>
     </div>
   );
-};
-
-export default Profile;
+}

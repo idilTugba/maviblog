@@ -25,7 +25,7 @@ const LOGIN_MUTATION = gql`
 `;
 
 const GET_CURRENT_USER = gql`
-  query {
+  query GetCurrentUser {
     currentUser @client {
       id
       username

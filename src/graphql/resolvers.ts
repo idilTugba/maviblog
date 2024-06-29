@@ -19,6 +19,9 @@ export const resolvers: IResolvers = {
     user: async (_: unknown, { username }: { username: string }) => {
       return await User.findOne({ username });
     },
+    currentUser: (parent, args, context) => {
+      return context.user;
+    },
   },
   Mutation: {
     createBlogPost: async (
