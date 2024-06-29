@@ -3,7 +3,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { useMutation, gql } from "@apollo/client";
+import { useMutation, gql, useApolloClient } from "@apollo/client";
 import { useRouter } from "next/navigation";
 
 interface formType {
@@ -20,6 +20,16 @@ const LOGIN_MUTATION = gql`
         username
         fullname
       }
+    }
+  }
+`;
+
+const GET_CURRENT_USER = gql`
+  query {
+    currentUser @client {
+      id
+      username
+      fullname
     }
   }
 `;
@@ -46,6 +56,8 @@ const Login = () => {
   });
 
   const router = useRouter();
+  const client = useApolloClient();
+
   const onSubmit = async (data: formType) => {
     try {
       const response = await mutateFunction({
@@ -56,7 +68,12 @@ const Login = () => {
       });
       console.warn("Login successful:", response.data);
       const { token, user } = response.data.login;
-      sessionStorage.setItem("user", response.data.login);
+      sessionStorage.setItem("user", token);
+      client.writeQuery({
+        query: GET_CURRENT_USER,
+        data: { currentUser: user },
+      });
+
       router.push("/");
     } catch (err: any) {
       console.warn("Login Error: ", err.message);
