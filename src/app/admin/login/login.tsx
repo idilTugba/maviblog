@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { useMutation, gql } from "@apollo/client";
+import { useRouter } from "next/navigation";
 
 interface formType {
   username: string;
@@ -12,7 +13,14 @@ interface formType {
 
 const LOGIN_MUTATION = gql`
   mutation login($username: String!, $password: String!) {
-    login(username: $username, password: $password)
+    login(username: $username, password: $password) {
+      token
+      user {
+        id
+        username
+        fullname
+      }
+    }
   }
 `;
 
@@ -37,6 +45,7 @@ const Login = () => {
     },
   });
 
+  const router = useRouter();
   const onSubmit = async (data: formType) => {
     try {
       const response = await mutateFunction({
@@ -45,9 +54,12 @@ const Login = () => {
           password: data.password,
         },
       });
-      console.log("Login successful:", response.data);
+      console.warn("Login successful:", response.data);
+      const { token, user } = response.data.login;
+      sessionStorage.setItem("user", response.data.login);
+      router.push("/");
     } catch (err: any) {
-      console.log("Login Error: ", err.message);
+      console.warn("Login Error: ", err.message);
     }
   };
 

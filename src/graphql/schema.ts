@@ -19,9 +19,15 @@ export const typeDefs = gql`
     videos: [String]
   }
 
+  type AuthPayload {
+    token: String!
+    user: User!
+  }
+
   type Query {
     allPosts: [BlogPost]
     blogPost(id: ID!): BlogPost
+    user(username: String!): User
   }
 
   type Mutation {
@@ -31,6 +37,6 @@ export const typeDefs = gql`
       images: [String]
       videos: [String]
     ): BlogPost
-    login(username: String!, password: String!): String
+    login(username: String!, password: String!): AuthPayload
   }
 `;
