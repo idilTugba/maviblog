@@ -1,8 +1,11 @@
+import Header from "@/components/header/header";
 import Profile from "../components/profile/profile";
+// import Style from "./styles/font.scss"
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="text-center">
+      <Header />
       <Profile />
     </main>
   );

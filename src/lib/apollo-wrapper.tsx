@@ -10,6 +10,7 @@ import {
 } from "@apollo/experimental-nextjs-app-support";
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { setVerbosity } from "ts-invariant";
+import { ThemeProvider } from "@/context/themeContext";
 
 if (process.env.NODE_ENV === "development") {
   setVerbosity("debug");
@@ -39,7 +40,7 @@ function makeClient() {
 export function ApolloWrapper({ children }: React.PropsWithChildren) {
   return (
     <ApolloNextAppProvider makeClient={makeClient}>
-      {children}
+      <ThemeProvider>{children}</ThemeProvider>
     </ApolloNextAppProvider>
   );
 }
