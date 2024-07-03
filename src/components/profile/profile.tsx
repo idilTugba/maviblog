@@ -13,7 +13,7 @@ const GET_CURRENT_USER = gql`
 
 export default function Profile() {
   const { data, loading, error } = useQuery(GET_CURRENT_USER);
-  console.log(data);
+
   if (!data || !data.currentUser) return <p>No user data</p>;
 
   const currentUser = data.currentUser;
