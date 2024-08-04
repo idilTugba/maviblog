@@ -1,14 +1,35 @@
 "use client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { error } from "console";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
+import { gql, useMutation } from "@apollo/client";
 
 interface formType {
   title: string;
   content: string;
 }
+
+const POST_NEW_POST = gql`
+  mutation CreateBlogPost($title: String!, $content: String!) {
+    createBlogPost(title: $title, content: $content) {
+      title
+      content
+      authorId
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+// const GET_CURRENT_POST = gql`
+//   query GetCurrentPost {
+//     blogPost @client {
+
+//     }
+//   }
+// `;
 
 const postValidateSchema = yup.object({
   title: yup
@@ -34,11 +55,26 @@ const AddPost = () => {
     },
   });
 
-  const handleSubmitForm = useCallback(async (data: formType) => {
-    try {
-      await console.log(data);
-    } catch (err: any) {}
-  }, []);
+  const [createBlogPost, { data, error, loading }] = useMutation(POST_NEW_POST);
+
+  const handleSubmitForm = useCallback(
+    async (data: formType) => {
+      try {
+        const response = await createBlogPost({
+          variables: {
+            title: data.title,
+            content: data.content,
+          },
+        });
+        console.log(response.data);
+      } catch (err: any) {
+        console.log(err);
+      }
+    },
+    [createBlogPost]
+  );
+
+  if (error) return `Submission error! ${error.message}`;
 
   return (
     <div className="container mt-5 ">
@@ -68,7 +104,7 @@ const AddPost = () => {
           </p>
         </div>
         <div className="relative">
-          <button>Post It</button>
+          <button>{loading ? "Submitting..." : "Post It"}</button>
         </div>
       </form>
     </div>
