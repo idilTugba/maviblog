@@ -1,0 +1,19 @@
+.navbar {
+  width: 100%;
+  border-bottom: 1px solid;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  ul {
+    display: inline-block;
+    li {
+      display: inline-block;
+      padding-right: 10px;
+    }
+  }
+  .search {
+    display: inline-block;
+  }
+}

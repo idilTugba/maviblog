@@ -1,0 +1,44 @@
+.rightSide {
+  padding-right: 5px;
+  :global(.items) {
+    margin-bottom: 2px;
+    :first-child,
+    :last-child {
+      display: none;
+    }
+    :nth-child(2) {
+      border: none;
+    }
+  }
+  img {
+    display: none;
+  }
+}
+.leftSide {
+  margin-bottom: 5px;
+  img {
+    display: none;
+  }
+  :global(.items) {
+    display: none;
+  }
+  :global(.title) {
+    text-decoration: underline;
+    padding-right: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+    &:before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background-color: black;
+      display: inline-block;
+      margin-bottom: 3px;
+      margin-right: 5px;
+      border-radius: 20px;
+    }
+  }
+  :global(.description) {
+    display: none;
+  }
+}

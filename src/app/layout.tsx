@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { ApolloWrapper } from "@/lib/apollo-wrapper";
-import Header from "@/components/header/header";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import { ApolloWrapper } from '@/lib/apollo-wrapper';
+import Header from '@/components/header/header';
+import Footer from '@/components/footer/footer';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Mavi Neşe Gölcük Blog",
-  description: "...",
+  title: 'Mavi Neşe Gölcük Blog',
+  description: '...',
 };
 
 export default function RootLayout({
@@ -19,12 +20,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={` bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light`}
+        className={`text-center bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light`}
       >
-        <ApolloWrapper>
-          <Header />
-          {children}
-        </ApolloWrapper>
+        <div className="w-10/12 inline-block">
+          <ApolloWrapper>
+            <Header />
+            {children}
+            <Footer />
+          </ApolloWrapper>
+        </div>
       </body>
     </html>
   );
