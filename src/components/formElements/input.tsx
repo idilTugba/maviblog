@@ -1,4 +1,5 @@
 import React from 'react';
+import style from './style.module.scss';
 
 const Input = ({
   placeholder,
@@ -11,7 +12,7 @@ const Input = ({
     <input
       type="text"
       placeholder={placeholder}
-      className={`${className} p-2`}
+      className={`${className + ' ' + style.shadow} p-2`}
     />
   );
 };

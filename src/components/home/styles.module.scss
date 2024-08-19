@@ -1,5 +1,7 @@
 .rightSide {
   padding-right: 5px;
+  border-bottom: 1px solid;
+  padding-bottom: 20px;
   :global(.items) {
     margin-bottom: 2px;
     :first-child,
