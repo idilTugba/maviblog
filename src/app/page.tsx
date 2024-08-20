@@ -10,10 +10,10 @@ export default async function Home() {
   const latestBlogData: BlogDataType[] = await getBlogData();
 
   return (
-    <main className="flex mt-8 gap-5 text-left">
-      <LeftSide data={latestBlogData} />
-      <CenterSide data={latestBlogData} />
+    <main className="flex mt-8 gap-5">
       <RightSide data={latestBlogData} />
+      <CenterSide data={latestBlogData} />
+      <LeftSide data={latestBlogData} />
     </main>
   );
 }

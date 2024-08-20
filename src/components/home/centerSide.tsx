@@ -1,6 +1,5 @@
 import { BlogDataType } from '@/context/blogContext';
 import BlogList from '../blog/blogList';
-import style from './styles.module.scss';
 
 const CenterSide = ({ data }: { data: BlogDataType[] }) => {
   return (

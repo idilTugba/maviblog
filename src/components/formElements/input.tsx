@@ -12,7 +12,7 @@ const Input = ({
     <input
       type="text"
       placeholder={placeholder}
-      className={`${className + ' ' + style.shadow} p-2`}
+      className={`${className + ' ' + style.shadow}`}
     />
   );
 };
