@@ -1,0 +1,23 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  font-size: 1.2rem; //10px
+  font-family: 'Lora';
+  font-weight: normal;
+}

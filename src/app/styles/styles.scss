@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './_variables.scss';
+@import './_mixins.scss';
+@import './font.scss';
+@import './reboots.scss';

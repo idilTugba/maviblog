@@ -1,0 +1,33 @@
+// Mixin to define a font-face
+@mixin font(
+  $font-family,
+  $font-style: normal,
+  $font-weight: normal,
+  $font-file-name
+) {
+  @font-face {
+    font-family: $font-family;
+    src: url('/fonts/#{$font-file-name}.woff2') format('woff2'),
+      url('/fonts/#{$font-file-name}.woff') format('woff');
+    font-weight: $font-weight;
+    font-style: $font-style;
+    font-display: swap;
+  }
+}
+
+// Example usage to define Lora font family
+@mixin fonts-lora() {
+  @include font('Lora', normal, normal, 'Lora-Regular');
+  @include font('Lora', italic, normal, 'Lora-Italic');
+  @include font('Lora', normal, 500, 'Lora-Medium');
+  @include font('Lora', italic, 500, 'Lora-MediumItalic');
+  @include font('Lora', normal, 600, 'Lora-SemiBold');
+  @include font('Lora', italic, 600, 'Lora-SemiBoldItalic');
+  @include font('Lora', normal, bold, 'Lora-Bold');
+  @include font('Lora', italic, bold, 'Lora-BoldItalic');
+}
+
+// Example usage to define Chomsky font family
+@mixin fonts-chomsky() {
+  @include font('Chomsky', normal, normal, 'Chomsky');
+}
