@@ -11,9 +11,9 @@ export default async function Home() {
 
   return (
     <main className="flex mt-8 gap-5">
+      <LeftSide data={latestBlogData} />
       <RightSide data={latestBlogData} />
       <CenterSide data={latestBlogData} />
-      <LeftSide data={latestBlogData} />
     </main>
   );
 }

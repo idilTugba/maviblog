@@ -17,11 +17,9 @@ const getUserFromToken = (token: string | undefined | null) => {
   }
 };
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+// export const api = {
+//   bodyParser: false,
+// };
 
 const handler = startServerAndCreateNextHandler(apolloServer, {
   context: async (req) => {
