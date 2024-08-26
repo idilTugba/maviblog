@@ -34,7 +34,7 @@ const BlogList = memo(function BlogList({
             />
             <Items />
             <div className={'title text-left font-bold text-xl'}>
-              <Link href="#">{item.title}</Link>
+              <Link href={`/blog/${item.id}`}>{item.title}</Link>
             </div>
             <div className={'description text-base'}>{item.description}</div>
           </article>

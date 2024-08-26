@@ -1,13 +1,21 @@
-import { promises as fs } from 'fs';
 import { cache } from 'react';
-import path from 'path';
 
-const getBlogData = cache(async () => {
-  const filePath = path.join(process.cwd(), '/public/blogData.json');
-  const file = await fs.readFile(filePath, 'utf8');
-  const latestBlogData = JSON.parse(file);
+const getAllBlog = cache(async () => {
+  const blogData = await fetch('http://localhost:3002/blogs')
+    .then((res) => res.json())
+    .then((data) => data);
 
-  return latestBlogData;
+  return blogData;
 });
 
-export default getBlogData;
+const getBlogData = cache(async (id: string) => {
+  const blogData = await fetch('http://localhost:3002/blogs/' + id)
+    .then((res) => res.json())
+    .then((data) => data);
+
+  return blogData;
+});
+
+const getBlog = { getAllBlog, getBlogData };
+
+export default getBlog;

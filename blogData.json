@@ -1,0 +1,94 @@
+{
+  "blogs": [
+    {
+      "id": "1",
+      "title": "How to Manage JavaScript Fatigue",
+      "description": "Many developers are overwhelmed by the rapidly expanding ecosystem of modern JavaScript. Learn how to manage and mitigate JS fatigue.",
+      "img": "/frankeinstein.jpeg"
+    },
+    {
+      "id": "2",
+      "title": "How to Use Next.js 14’s Server Components Effectively",
+      "description": "It’s not uncommon to discover a snippet of wisdom that challenges our established practices and nudges us towards introspection. This was precisely my experience when a seemingly innocuous comment on Reddit sparked a profound reevaluation of my approach to using Next.js 14. The comment, simple yet profound, suggested: “with Next.js 14, you don’t need to use useState as much.”",
+      "img": "/sevmezamani.png"
+    },
+    {
+      "id": "3",
+      "title": "Mükemmeliyetle özgünlük mümkün değil: Kit Sebastian",
+      "description": "Geçmişle günümüzü psikedelik pop filtresinden geçirerek buluşturan Londralı ikili Kit Sebastian, şimdilerde yeni bir heyecan yaşıyor. Flying Lotus’un kurucusu olduğu plak şirketi Brainfeeder ile anlaşan ve bu etiketle ilk teklisini yayımlayan Kit Martin – Merve Erdem ikilisi, ilham yelpazesini genişletmeye tam gaz devam ediyor.",
+      "img": "/bergman.png"
+    },
+    {
+      "id": "4",
+      "title": "Choosing the State Structure",
+      "description": "Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. Here are some tips you should consider when structuring state.",
+      "img": "/pulp.jpg"
+    },
+    {
+      "id": "5",
+      "title": "Server and Client Components",
+      "description": "Each environment has its own set of capabilities and constraints. For example, by moving rendering and data fetching to the server, you can reduce the amount of code sent to the client, which can improve your application's performance. But, as you learned earlier, to make your UI interactive, you need to update the DOM on the client.",
+      "img": "/sevmezamani.png"
+    },
+    {
+      "id": "6",
+      "title": "How to Manage JavaScript Fatigue",
+      "description": "Many developers are overwhelmed by the rapidly expanding ecosystem of modern JavaScript. Learn how to manage and mitigate JS fatigue.",
+      "img": "/frankeinstein.jpeg"
+    },
+    {
+      "id": "7",
+      "title": "How to Manage JavaScript Fatigue",
+      "description": "Many developers are overwhelmed by the rapidly expanding ecosystem of modern JavaScript. Learn how to manage and mitigate JS fatigue.",
+      "img": "/frankeinstein.jpeg"
+    },
+    {
+      "id": "8",
+      "title": "How to Manage JavaScript Fatigue",
+      "description": "Many developers are overwhelmed by the rapidly expanding ecosystem of modern JavaScript. Learn how to manage and mitigate JS fatigue.",
+      "img": "/frankeinstein.jpeg"
+    },
+    {
+      "id": "9",
+      "title": "How to Manage JavaScript Fatigue",
+      "description": "Many developers are overwhelmed by the rapidly expanding ecosystem of modern JavaScript. Learn how to manage and mitigate JS fatigue.",
+      "img": "/frankeinstein.jpeg"
+    },
+    {
+      "id": "10",
+      "title": "How to Manage JavaScript Fatigue",
+      "description": "Many developers are overwhelmed by the rapidly expanding ecosystem of modern JavaScript. Learn how to manage and mitigate JS fatigue.",
+      "img": "/frankeinstein.jpeg"
+    },
+    {
+      "id": "11",
+      "title": "How to Manage JavaScript Fatigue",
+      "description": "Many developers are overwhelmed by the rapidly expanding ecosystem of modern JavaScript. Learn how to manage and mitigate JS fatigue.",
+      "img": "/frankeinstein.jpeg"
+    },
+    {
+      "id": "12",
+      "title": "How to Manage JavaScript Fatigue",
+      "description": "Many developers are overwhelmed by the rapidly expanding ecosystem of modern JavaScript. Learn how to manage and mitigate JS fatigue.",
+      "img": "/frankeinstein.jpeg"
+    },
+    {
+      "id": "13",
+      "title": "How to Manage JavaScript Fatigue",
+      "description": "Many developers are overwhelmed by the rapidly expanding ecosystem of modern JavaScript. Learn how to manage and mitigate JS fatigue.",
+      "img": "/frankeinstein.jpeg"
+    },
+    {
+      "id": "14",
+      "title": "How to Manage JavaScript Fatigue",
+      "description": "Many developers are overwhelmed by the rapidly expanding ecosystem of modern JavaScript. Learn how to manage and mitigate JS fatigue.",
+      "img": "/frankeinstein.jpeg"
+    },
+    {
+      "id": "15",
+      "title": "How to Manage JavaScript Fatigue",
+      "description": "Many developers are overwhelmed by the rapidly expanding ecosystem of modern JavaScript. Learn how to manage and mitigate JS fatigue.",
+      "img": "/frankeinstein.jpeg"
+    }
+  ]
+}

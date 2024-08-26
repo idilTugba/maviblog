@@ -5,6 +5,7 @@ export interface BlogDataType {
   title: string;
   description: string;
   img: string;
+  id?: number;
 }
 
 interface BlogProviderType {
