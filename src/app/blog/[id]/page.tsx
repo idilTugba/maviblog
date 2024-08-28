@@ -3,7 +3,7 @@ import React from 'react';
 import getBlog from '@/utils/blogData';
 import { BlogDataType } from '@/context/blogContext';
 
-const Blog = async ({ params }: { params: any }) => {
+const Blog = async ({ params }: { params: { id: string } }) => {
   const blog: BlogDataType = await getBlog.getBlogData(params.id);
   return <BlogDetail data={blog} />;
 };
