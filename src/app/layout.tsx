@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './styles/styles.scss';
-import { ApolloWrapper } from '@/lib/apollo-wrapper';
+// import { ApolloWrapper } from '@/lib/apollo-wrapper';
 import Header from '@/components/header/header';
 import Footer from '@/components/footer/footer';
 
@@ -23,11 +23,9 @@ export default function RootLayout({
         className={`text-center bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light`}
       >
         <div className="w-10/12 inline-block">
-          <ApolloWrapper>
-            <Header />
-            {children}
-            <Footer />
-          </ApolloWrapper>
+          <Header />
+          {children}
+          <Footer />
         </div>
       </body>
     </html>

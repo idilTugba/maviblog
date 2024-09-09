@@ -1,4 +1,4 @@
-import Login from "../../../components/login/login";
+import Login from '../../../components/login/00login';
 
 export default async function AdminPage() {
   return (

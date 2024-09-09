@@ -1,5 +1,4 @@
 import CenterSide from '@/components/home/centerSide';
-import Profile from '../components/profile/profile';
 import BlogList from '@/components/blog/blogList';
 import RightSide from '@/components/home/rightSide';
 import { BlogDataType } from '@/context/blogContext';
