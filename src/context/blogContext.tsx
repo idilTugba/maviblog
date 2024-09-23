@@ -1,9 +1,13 @@
 'use client';
 import { createContext, useContext, useEffect, useState } from 'react';
 
+export interface BlogDataFromDB {
+  blogs: BlogDataType[];
+}
+
 export interface BlogDataType {
   title: string;
-  description: string;
+  content: string;
   img: string;
   id?: string;
 }
@@ -20,7 +24,7 @@ export interface BlogContextType {
 const initialData = [
   {
     title: 'LOREM IPSUM',
-    description: 'lorem ipsum....',
+    content: 'lorem ipsum....',
     img: 'frankenistein.jpeg',
   },
 ];

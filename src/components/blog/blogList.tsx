@@ -27,7 +27,7 @@ const BlogList = memo(function BlogList({
           >
             <Image
               className="w-full max-h-[400px]"
-              src={item.img}
+              src={item.img ? item.img : '/frankeinstein.jpeg'}
               alt={item.title}
               width={500}
               height={200}
@@ -36,7 +36,7 @@ const BlogList = memo(function BlogList({
             <div className={'title text-left font-bold text-xl'}>
               <Link href={`/blog/${item.id}`}>{item.title}</Link>
             </div>
-            <div className={'description text-base'}>{item.description}</div>
+            <div className={'description text-base'}>{item.content}</div>
           </article>
         );
       })}

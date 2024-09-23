@@ -1,8 +1,24 @@
 import dbConnect from '@/utils/dbconnect';
 import BlogPost from '@/models/Blog';
 
-export async function GET(req: Request) {
+export async function GET() {
   await dbConnect();
+  try {
+    const data = await BlogPost.find();
+    return Response.json({ blogs: data }, { status: 200 });
+  } catch (error) {
+    if (error instanceof Error) {
+      return Response.json(
+        { error: error.message || 'Data alınamadı' },
+        { status: 500 }
+      );
+    } else {
+      return Response.json(
+        { error: error || 'Data alınamadı' },
+        { status: 500 }
+      );
+    }
+  }
 }
 
 export async function POST(req: Request) {

@@ -9,14 +9,14 @@ const BlogDetail = ({ data }: { data: BlogDataType }) => {
     <div className={style.blogdetail}>
       <Image
         className=""
-        src={data.img}
+        src={data.img ? data.img : '/frankeinstein.jpeg'}
         alt="image title"
         width={400}
         height={200}
       />
       <Items />
       <h1>{data.title}</h1>
-      <p>{data.description}</p>
+      <p>{data.content}</p>
     </div>
   );
 };

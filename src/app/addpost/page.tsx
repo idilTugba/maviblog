@@ -47,7 +47,7 @@ const AddPost = () => {
           data
         );
 
-        const blog = res.data;
+        const blog = await res.data;
         console.log(blog);
         setError('');
       } catch (err: any) {
