@@ -4,15 +4,14 @@ const dbConnect = async () => {
   console.log(process.env.MONGODB_URI);
   const url: string | undefined = process.env.MONGODB_URI;
   mongoose.set('strictQuery', false);
+
   if (url) {
-    mongoose
-      .connect(url)
-      .then((result) => {
-        console.log('connected');
-      })
-      .catch((err) => {
-        console.log('error to connection on MongoDB ', err.message);
-      });
+    try {
+      await mongoose.connect(url);
+      console.log('connected');
+    } catch (error: any) {
+      console.log('error to connection on MongoDB ', error.message);
+    }
   } else {
     console.log('Mongodb connection is missing');
   }
