@@ -29,6 +29,7 @@ export async function POST(req: Request) {
     const newBlog = new BlogPost({
       title: data.title,
       content: data.content,
+      category: data.category,
     });
     newBlog.save();
     return Response.json({ blog: data }, { status: 201 });

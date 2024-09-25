@@ -10,6 +10,8 @@ export interface BlogDataType {
   content: string;
   img: string;
   id?: string;
+  createdAt?: Date;
+  category: string;
 }
 
 interface BlogProviderType {
@@ -26,6 +28,7 @@ const initialData = [
     title: 'LOREM IPSUM',
     content: 'lorem ipsum....',
     img: 'frankenistein.jpeg',
+    category: 'Makale',
   },
 ];
 

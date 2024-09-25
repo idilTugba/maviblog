@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Items from './items';
 
-const BlogList = memo(function BlogList({
+const BlogList = function BlogList({
   data,
   className,
 }: {
@@ -32,7 +32,7 @@ const BlogList = memo(function BlogList({
               width={500}
               height={200}
             />
-            <Items />
+            <Items data={item} />
             <div className={'title text-left font-bold text-xl'}>
               <Link href={`/blog/${item.id}`}>{item.title}</Link>
             </div>
@@ -42,6 +42,6 @@ const BlogList = memo(function BlogList({
       })}
     </div>
   );
-});
+};
 
 export default BlogList;

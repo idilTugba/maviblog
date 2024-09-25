@@ -8,11 +8,16 @@ export interface IBlogPost extends Document {
   updatedAt: Date;
   images?: string[];
   videos?: string[];
+  like?: number;
+  category: string;
 }
 
 const blogPostSchema: Schema<IBlogPost> = new mongoose.Schema({
-  title: { type: String, required: [true, 'Başlık boş olamaz!'] },
-  content: { type: String, required: [true, 'İçerik boş olamaz! '] },
+  title: { type: String, required: [true, 'Server Error! Başlık boş olamaz!'] },
+  content: {
+    type: String,
+    required: [true, 'Server Error! İçerik boş olamaz! '],
+  },
   authorId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -22,6 +27,11 @@ const blogPostSchema: Schema<IBlogPost> = new mongoose.Schema({
   updatedAt: { type: Date, default: Date.now },
   images: [String],
   videos: [String],
+  like: { type: Number },
+  category: {
+    type: String,
+    required: [true, 'Server Error! Kategori belirtilmeli.'],
+  },
 });
 
 blogPostSchema.set('toJSON', {

@@ -8,6 +8,7 @@ import * as yup from 'yup';
 interface formType {
   title: string;
   content: string;
+  category: string;
 }
 
 const postValidateSchema = yup.object({
@@ -19,6 +20,7 @@ const postValidateSchema = yup.object({
     .string()
     .min(200, 'Content must be min 200 chracter')
     .required('Must be a content'),
+  category: yup.string().required('Select a category'),
 });
 
 const AddPost = () => {
@@ -31,6 +33,7 @@ const AddPost = () => {
     defaultValues: {
       title: '',
       content: '',
+      category: '',
     },
   });
 
@@ -86,6 +89,15 @@ const AddPost = () => {
           />
           <p className="absolute bottom-1 pl-2 text-sm text-red-600 font-thin">
             {errors.content?.message}
+          </p>
+        </div>
+        <div className="relative">
+          <select {...register('category')} name="category">
+            <option value="makale">Makale</option>
+            <option value="alıntilar">Alıntılar</option>
+          </select>
+          <p className="absolute bottom-1 pl-2 text-sm text-red-600 font-thin">
+            {errors.category?.message}
           </p>
         </div>
         <div className="relative">

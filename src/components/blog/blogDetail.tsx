@@ -14,7 +14,7 @@ const BlogDetail = ({ data }: { data: BlogDataType }) => {
         width={400}
         height={200}
       />
-      <Items />
+      <Items data={data} />
       <h1>{data.title}</h1>
       <p>{data.content}</p>
     </div>
