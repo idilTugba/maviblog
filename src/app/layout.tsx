@@ -4,6 +4,7 @@ import './styles/styles.scss';
 // import { ApolloWrapper } from '@/lib/apollo-wrapper';
 import Header from '@/components/header/header';
 import Footer from '@/components/footer/footer';
+import { ThemeProvider } from '@/context/themeContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,9 +24,11 @@ export default function RootLayout({
         className={`text-center bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light`}
       >
         <div className="w-10/12 inline-block">
-          <Header />
-          {children}
-          <Footer />
+          <ThemeProvider>
+            <Header />
+            {children}
+            <Footer />
+          </ThemeProvider>
         </div>
       </body>
     </html>
