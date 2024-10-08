@@ -1,4 +1,3 @@
-import { BlogDataType } from '@/context/blogContext';
 import axios from 'axios';
 import { cache } from 'react';
 

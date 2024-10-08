@@ -20,7 +20,7 @@ const LeftSide = ({ data }: { data: BlogDataType[] }) => {
   return (
     <div className="w-1/5 inline-block border-r-[1px] pr-2 border-solid border-primary-dark dark:border-primary-light">
       <h2 className="mb-5 ">TÜM YAZILAR</h2>
-      {}
+
       {Object.keys(groupedData).map((item) => {
         return (
           <div key={`category-${item}`} className="mb-2">

@@ -1,16 +1,19 @@
-import CenterSide from '@/components/home/centerSide';
-import RightSide from '@/components/home/rightSide';
-import { BlogDataFromDB } from '@/context/blogContext';
 import getBlog from '@/utils/blogData';
-import LeftSide from '@/components/home/leftSide';
+import BlogContent from '@/components/blog/blogContent';
+import { Suspense } from 'react';
+import Loading from './loading';
 
 export default async function Home() {
-  const latestBlogData: BlogDataFromDB = await getBlog.getAllBlog();
+  const latestBlogData = getBlog.getAllBlog();
   return (
     <main className="flex text-left mt-8 gap-5">
-      <LeftSide data={latestBlogData.blogs} />
-      <CenterSide data={latestBlogData.blogs} />
-      <RightSide data={latestBlogData.blogs} />
+      <Suspense fallback={<Loading />}>
+        {latestBlogData ? (
+          <BlogContent blogs={latestBlogData} />
+        ) : (
+          <p>Data Yüklenirken bir hata oluştu.</p>
+        )}
+      </Suspense>
     </main>
   );
 }

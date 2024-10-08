@@ -5,6 +5,8 @@ import './styles/styles.scss';
 import Header from '@/components/header/header';
 import Footer from '@/components/footer/footer';
 import { ThemeProvider } from '@/context/themeContext';
+import { ErrorBoundary } from 'next/dist/client/components/error-boundary';
+import Error from './error';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,11 +26,13 @@ export default function RootLayout({
         className={`text-center bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light`}
       >
         <div className="w-10/12 inline-block">
+          {/* <ErrorBoundary fallback={<Error error={new Error()} reset={() => {}} />}> */}
           <ThemeProvider>
             <Header />
             {children}
             <Footer />
           </ThemeProvider>
+          {/* </ErrorBoundary> */}
         </div>
       </body>
     </html>

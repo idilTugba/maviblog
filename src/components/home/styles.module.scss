@@ -16,6 +16,16 @@
     display: none;
   }
 }
+.centerSide {
+  img {
+    display: none;
+  }
+  &:first-of-type {
+    img {
+      display: block;
+    }
+  }
+}
 .leftSide {
   margin-bottom: 5px;
   img {

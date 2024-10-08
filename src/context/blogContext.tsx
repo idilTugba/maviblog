@@ -44,7 +44,6 @@ export const BlogProvider = ({ children }: BlogProviderType) => {
 
   useEffect(() => {
     setBlogData(blogData);
-    console.log('mutate');
   }, [blogData]);
 
   const value: BlogContextType = {
