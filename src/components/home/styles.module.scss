@@ -15,9 +15,18 @@
   img {
     display: none;
   }
+  iframe {
+    display: block;
+    width: 100%;
+    height: 250px;
+    margin-bottom: 10px;
+  }
 }
 .centerSide {
   img {
+    display: none;
+  }
+  iframe {
     display: none;
   }
   &:first-of-type {
@@ -29,6 +38,9 @@
 .leftSide {
   margin-bottom: 5px;
   img {
+    display: none;
+  }
+  iframe{
     display: none;
   }
   :global(.items) {

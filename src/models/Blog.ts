@@ -7,7 +7,7 @@ export interface IBlogPost extends Document {
   createdAt: Date;
   updatedAt: Date;
   images?: string[];
-  videos?: string[];
+  videos?: string;
   like?: number;
   category: string;
 }
@@ -26,7 +26,7 @@ const blogPostSchema: Schema<IBlogPost> = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
   images: [String],
-  videos: [String],
+  videos: String,
   like: { type: Number },
   category: {
     type: String,

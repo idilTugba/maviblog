@@ -27,6 +27,16 @@ p{
   padding: 0;
 }
 
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  outline: none;
+  :focus{
+    outline: none;
+  }
+}
+
 body {
   font-family: "Lora";
   font-weight: normal;

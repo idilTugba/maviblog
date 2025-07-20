@@ -7,7 +7,7 @@ export async function GET(
 ) {
   await dbConnect();
   try {
-    console.log(params.id);
+    console.log("BLOG ID",params.id);
     const blog = await BlogPost.findById(params.id);
     if (!blog) Response.json({ error: 'Blog bulunamadı' }, { status: 404 });
     return Response.json({ blog }, { status: 200 });

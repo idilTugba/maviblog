@@ -6,6 +6,9 @@ const nextConfig = {
       serverComponentsExternalPackages: ["mongoose"],
       // instrumentationHook: true,
   },
+   images: {
+    domains: ['placehold.co'],
+  },
   // enable top-level await support for Webpack
   // webpack: (config) => {
   //   config.experiments = {

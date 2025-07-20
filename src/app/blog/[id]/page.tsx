@@ -14,11 +14,17 @@ const Blog = async ({ params }: { params: { id: string } }) => {
 
 export async function generateStaticParams() {
   const blogs: BlogDataFromDB = await getBlog.getAllBlog();
-  const data = blogs.blogs;
-  const params = data.map((blog) => ({
+
+  const data = blogs?.blogs;
+
+  if (!Array.isArray(data)) {
+    console.warn('generateStaticParams: blogs.blogs verisi beklenmedik biçimde geldi:', data);
+    return [];
+  }
+
+  return data?.map((blog) => ({
     id: blog.id?.toString(),
   }));
-  return params;
 }
 
 export default Blog;

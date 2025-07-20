@@ -4,7 +4,7 @@ import { cache } from 'react';
 const getAllBlog = cache(async () => {
   try {
     const data = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/blog`);
-    const allBlogData = data.data;
+    const allBlogData = await data.data;
     return allBlogData;
   } catch (error) {
     return error;
@@ -16,7 +16,7 @@ const getBlogData = cache(async (id: string) => {
     const data = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/api/blog/${id}`
     );
-    const blogData = data.data;
+    const blogData = await data.data;
     return blogData;
   } catch (error) {
     return error;

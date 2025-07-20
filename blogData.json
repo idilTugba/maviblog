@@ -10,7 +10,8 @@
       "id": "2",
       "title": "How to Use Next.js 14’s Server Components Effectively",
       "description": "It’s not uncommon to discover a snippet of wisdom that challenges our established practices and nudges us towards introspection. This was precisely my experience when a seemingly innocuous comment on Reddit sparked a profound reevaluation of my approach to using Next.js 14. The comment, simple yet profound, suggested: “with Next.js 14, you don’t need to use useState as much.”",
-      "img": "/sevmezamani.png"
+      "img": "/sevmezamani.png",
+      "video": "https://www.youtube.com/embed/tgbNymZ7vqY"
     },
     {
       "id": "3",

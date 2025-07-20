@@ -8,7 +8,8 @@ export interface BlogDataFromDB {
 export interface BlogDataType {
   title: string;
   content: string;
-  img: string;
+  images?: string[] | string;
+  videos?: string;
   id?: string;
   createdAt?: Date;
   category: string;
@@ -27,7 +28,6 @@ const initialData = [
   {
     title: 'LOREM IPSUM',
     content: 'lorem ipsum....',
-    img: 'frankenistein.jpeg',
     category: 'Makale',
   },
 ];

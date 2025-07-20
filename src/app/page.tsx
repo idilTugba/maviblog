@@ -4,7 +4,8 @@ import { Suspense } from 'react';
 import Loading from './loading';
 
 export default async function Home() {
-  const latestBlogData = getBlog.getAllBlog();
+  const latestBlogData = await getBlog.getAllBlog();
+  
   return (
     <main className="flex text-left mt-8 gap-5">
       <Suspense fallback={<Loading />}>

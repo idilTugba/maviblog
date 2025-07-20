@@ -24,7 +24,6 @@ export async function GET() {
 export async function POST(req: Request) {
   await dbConnect();
   const data = await req.json();
-  console.log(data);
   try {
     const newBlog = new BlogPost({
       title: data.title,
