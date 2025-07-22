@@ -1,14 +1,15 @@
 /** @type {import('next').NextConfig} */
 import 'dotenv/config';
 const nextConfig = {
-    experimental: {
+  experimental: {
       esmExternals: "loose",
       serverComponentsExternalPackages: ["mongoose"],
       // instrumentationHook: true,
-  },
-   images: {
+    },
+  images: {
     domains: ['placehold.co'],
   },
+  // output: 'export',
   // enable top-level await support for Webpack
   // webpack: (config) => {
   //   config.experiments = {
