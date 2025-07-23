@@ -5,11 +5,10 @@ import Loading from './loading';
 
 export default async function Home() {
   const latestBlogData = await getBlog.getAllBlog();
-  
   return (
     <main className="flex text-left mt-8 gap-5">
       <Suspense fallback={<Loading />}>
-        {latestBlogData ? (
+        {latestBlogData ? (console.log('Rendering BlogContent with data:', latestBlogData),
           <BlogContent blogs={latestBlogData} />
         ) : (
           <p>Data Yüklenirken bir hata oluştu.</p>
