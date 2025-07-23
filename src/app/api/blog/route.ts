@@ -5,6 +5,7 @@ export async function GET() {
   await dbConnect();
   try {
     const data = await BlogPost.find();
+    console.log('Blog data:', data);
     return Response.json({ blogs: data }, { status: 200 });
   } catch (error) {
     if (error instanceof Error) {

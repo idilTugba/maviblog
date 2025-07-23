@@ -32,7 +32,7 @@ const blogPostSchema: Schema<IBlogPost> = new mongoose.Schema({
     type: String,
     required: [true, 'Server Error! Kategori belirtilmeli.'],
   },
-});
+},{ collection: 'blogposts' });
 
 blogPostSchema.set('toJSON', {
   transform: (document, returnedObject) => {
