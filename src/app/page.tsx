@@ -5,6 +5,8 @@ import Loading from './loading';
 
 export default async function Home() {
   const latestBlogData = await getBlog.getAllBlog();
+
+  console.log('Latest Blog Data:', latestBlogData);
   return (
     <main className="flex text-left mt-8 gap-5">
       <Suspense fallback={<Loading />}>
