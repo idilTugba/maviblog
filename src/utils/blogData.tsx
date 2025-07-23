@@ -5,7 +5,7 @@ const getAllBlog = cache(async () => {
   try {
     const data = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/blog`);
     const allBlogData = await data.data;
-    console.log('All Blog Data:', allBlogData);
+    // console.log('All Blog Data:', allBlogData);
     return allBlogData;
   } catch (error) {
     return error;
