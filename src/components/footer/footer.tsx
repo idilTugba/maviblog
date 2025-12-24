@@ -51,7 +51,7 @@ const Footer = () => {
           </span>
         </p>
         <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-          <div className="mt-3 flex items-center">
+          <div className="mt-3 flex flex-col md:flex-row items-stretch md:items-center gap-2">
             <Input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -61,7 +61,7 @@ const Footer = () => {
             />
             <button
               className={
-                'bg-primary-dark dark:bg-primary-light text-primary-light dark:text-primary-dark h-[40px] font-bold whitespace-nowrap ' +
+                'bg-primary-dark dark:bg-primary-light text-primary-light dark:text-primary-dark h-[40px] font-bold whitespace-nowrap w-full md:w-auto ' +
                 styleText.sub_but
               }
               type="submit"
@@ -70,7 +70,7 @@ const Footer = () => {
               Gönder
             </button>
           </div>
-          {status && <p className="text-red-500 mt-2">{status}</p>}
+          {status && <p className="text-red-500 mt-2 text-sm">{status}</p>}
         </form>
         <br />
       </div>

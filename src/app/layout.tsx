@@ -29,7 +29,7 @@ export default function RootLayout({
       <body
         className={`text-center bg-primary-light dark:bg-primary-dark text-primary-dark dark:text-primary-light`}
       >
-        <div className="w-10/12 inline-block">
+        <div className="w-full md:w-10/12 px-4 md:px-0 inline-block">
           {/* <ErrorBoundary fallback={<Error error={new Error()} reset={() => {}} />}> */}
           <ThemeProvider>
             <Header />

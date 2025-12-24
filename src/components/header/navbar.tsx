@@ -20,24 +20,24 @@ const Navbar = () => {
     <nav
       className={`${style.navbar} border-primary-dark dark:border-primary-light`}
     >
-      <ul>
+      <ul className="flex flex-wrap justify-center md:justify-start gap-2 md:gap-0 mb-3 md:mb-0">
         <li>
-          <Link href="/">ANA SAYFA</Link>
+          <Link href="/" className="text-sm md:text-base">ANA SAYFA</Link>
         </li>
         <li>
-          <Link href="/about">HAKKINDA</Link>
+          <Link href="/about" className="text-sm md:text-base">HAKKINDA</Link>
         </li>
         {isAuthenticated && (
           <li>
-            <Link href="/addpost">YENİ YAZI</Link>
+            <Link href="/addpost" className="text-sm md:text-base">YENİ YAZI</Link>
           </li>
         )}
       </ul>
       <div className={`${style.search}`}>
-        <Input placeholder="Yazı Ara" className="h-[40px]" />
+        <Input placeholder="Yazı Ara" className="h-[40px] text-sm md:text-base" />
         <button
           onClick={handleToggleTheme}
-          className="p-2 text-sm h-[40px] font-bold bg-primary-dark text-primary-light dark:bg-primary-light dark:text-primary-dark whitespace-nowrap"
+          className="p-2 text-xs md:text-sm h-[40px] font-bold bg-primary-dark text-primary-light dark:bg-primary-light dark:text-primary-dark whitespace-nowrap"
         >
           {theme === 'light' ? 'Dark' : 'Light'} Mode
         </button>

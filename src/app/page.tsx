@@ -11,7 +11,7 @@ export default async function Home() {
 
   // console.log('Latest Blog Data:', latestBlogData);
   return (
-    <main className="flex text-left mt-8 gap-5">
+    <main className="flex flex-col md:flex-row text-left mt-8 gap-5">
       <Suspense fallback={<Loading />}>
         {latestBlogData ? (
           <BlogContent blogs={latestBlogData} />

@@ -29,8 +29,8 @@ const RightSide = ({ data }: { data: BlogDataType[] }) => {
 
   return (
     <>
-      <div className="w-2/5 border-l-gray-700 inline-block">
-        <h4 className="pb-4 mb-6 text-3xl font-semibold border-solid border-b-2 w-full border-primary-dark dark:border-primary-light">
+      <div className="w-full md:w-2/5 border-l-0 md:border-l-gray-700 border-t-[1px] md:border-t-0 pt-5 md:pt-0 mt-5 md:mt-0 inline-block order-3 md:order-none">
+        <h4 className="pb-4 mb-6 text-2xl md:text-3xl font-semibold border-solid border-b-2 w-full border-primary-dark dark:border-primary-light">
           Özel Seçkiler
         </h4>
 

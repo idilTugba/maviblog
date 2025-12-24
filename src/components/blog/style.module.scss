@@ -1,11 +1,22 @@
 .blogdetail {
   text-align: left;
   display: flex;
-  flex-direction: row;
-  gap: 50px;
+  flex-direction: column;
+  gap: 20px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 50px;
+  }
+
   .blogdetail_image {
     flex-shrink: 0;
-    width: 400px;
+    width: 100%;
+
+    @media (min-width: 768px) {
+      width: 400px;
+    }
+
     img {
       width: 100%;
       max-height: 400px;
@@ -28,8 +39,12 @@
     flex: none;
   }
   h1 {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bolder;
+
+    @media (min-width: 768px) {
+      font-size: 24px;
+    }
   }
   p {
     margin-bottom: 5px;

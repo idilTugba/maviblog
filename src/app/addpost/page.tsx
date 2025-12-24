@@ -162,7 +162,7 @@ const AddPost = () => {
   }
 
   return (
-    <div className="container mt-5 max-w-4xl mx-auto px-4">
+    <div className="container mt-5 max-w-4xl mx-auto px-4 md:px-6">
       <h2 className="mt-5 mb-8 text-3xl font-bold text-center">
         Yeni Blog Yazısı Ekle
       </h2>
