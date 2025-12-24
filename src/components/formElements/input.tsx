@@ -18,9 +18,9 @@ const Input = ({
     <input
       type={type}
       value={value}
-      onChange={onChange  ? onChange : undefined}
+      onChange={onChange ? onChange : undefined}
       placeholder={placeholder}
-      className={`${className + ' ' + style.shadow}`}
+      className={`${style.shadow} ${className || ''}`}
     />
   );
 };

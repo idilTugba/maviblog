@@ -3,44 +3,21 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { useMutation, gql, useApolloClient } from '@apollo/client';
 import { useRouter } from 'next/navigation';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
+import axios from 'axios';
 
 interface formType {
   username: string;
   password: string;
 }
 
-const LOGIN_MUTATION = gql`
-  mutation login($username: String!, $password: String!) {
-    login(username: $username, password: $password) {
-      token
-      user {
-        id
-        username
-        fullname
-      }
-    }
-  }
-`;
-
-const GET_CURRENT_USER = gql`
-  query GetCurrentUser {
-    currentUser @client {
-      id
-      username
-      fullname
-    }
-  }
-`;
-
 const loginValidateSchema = yup.object({
   username: yup
     .string()
-    .min(5, 'username must be min 5 characters')
-    .required('username required'),
-  password: yup.string().required('password required'),
+    .min(5, 'Kullanıcı adı en az 5 karakter olmalıdır')
+    .required('Kullanıcı adı gereklidir'),
+  password: yup.string().required('Şifre gereklidir'),
 });
 
 export const dynamic = 'force-dynamic';
@@ -59,33 +36,44 @@ const Login = () => {
   });
 
   const router = useRouter();
-  const client = useApolloClient();
-
-  const [mutateFunction, { loading, error }] = useMutation(LOGIN_MUTATION);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const onSubmit = useCallback(
     async (data: formType) => {
+      setLoading(true);
+      setError(null);
+
       try {
-        const response = await mutateFunction({
-          variables: {
+        const response = await axios.post(
+          `${window.location.origin}/api/auth/login`,
+          {
             username: data.username,
             password: data.password,
-          },
-        });
-        // console.log("Login successful:", response.data);
-        const { token, user } = response.data.login;
-        sessionStorage.setItem('token', token);
-        client.writeQuery({
-          query: GET_CURRENT_USER,
-          data: { currentUser: user },
-        });
+          }
+        );
 
+        const { token, user } = response.data;
+        
+        // Token'ı sessionStorage'a kaydet
+        sessionStorage.setItem('token', token);
+        
+        console.log('Login successful:', user);
+        
+        // Ana sayfaya yönlendir
         router.push('/');
       } catch (err: any) {
-        console.warn('Login Error: ', err.message);
+        console.error('Login Error:', err);
+        setError(
+          err.response?.data?.error ||
+            err.message ||
+            'Giriş yapılırken bir hata oluştu'
+        );
+      } finally {
+        setLoading(false);
       }
     },
-    [mutateFunction, client, router]
+    [router]
   );
 
   //   password : "gogekezomavi"
@@ -117,7 +105,7 @@ const Login = () => {
           </p>
         </div>
         {error && (
-          <p className="text-red-600 font-thin mt-2">{error.message}</p>
+          <p className="text-red-600 font-thin mt-2">{error}</p>
         )}
         <button
           className="p-2 w-full dark:text-primary-light text-primary-dark dark:bg-primary-dark bg-primary-light hover:bg-[#0e1514ac] active:bg-[#0e15148f] focus:outline-none"

@@ -13,6 +13,10 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Mavi Neşe Gölcük Blog',
   description: '...',
+  other: {
+    'preconnect-googleapis': 'https://fonts.googleapis.com',
+    'preconnect-gstatic': 'https://fonts.gstatic.com',
+  },
 };
 
 export default function RootLayout({

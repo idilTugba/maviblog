@@ -3,6 +3,9 @@ import React from 'react';
 import getBlog from '@/utils/blogData';
 import { BlogDataFromDB, BlogDataType } from '@/context/blogContext';
 
+// ISR: Her 60 saniyede bir sayfayı yeniden oluştur
+export const revalidate = 60;
+
 type BlogData = {
   blog: BlogDataType;
 };
@@ -18,7 +21,10 @@ export async function generateStaticParams() {
   const data = blogs?.blogs;
 
   if (!Array.isArray(data)) {
-    console.warn('generateStaticParams: blogs.blogs verisi beklenmedik biçimde geldi:', data);
+    console.warn(
+      'generateStaticParams: blogs.blogs verisi beklenmedik biçimde geldi:',
+      data
+    );
     return [];
   }
 

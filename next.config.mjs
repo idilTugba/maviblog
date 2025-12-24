@@ -7,7 +7,12 @@ const nextConfig = {
       // instrumentationHook: true,
     },
   images: {
-    domains: ['placehold.co'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+      },
+    ],
   },
   // output: 'export',
   // enable top-level await support for Webpack

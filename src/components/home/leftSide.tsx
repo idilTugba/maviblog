@@ -8,16 +8,25 @@ type GroupedDataType = {
 
 const LeftSide = ({ data }: { data: BlogDataType[] }) => {
   const groupedData = Array.isArray(data)
-  ? data.reduce<GroupedDataType>((acc, item) => {
-      const { category } = item;
+    ? data.reduce<GroupedDataType>((acc, item) => {
+        const { category } = item;
 
-      if (!acc[category]) {
-        acc[category] = [];
-      }
-      acc[category].push(item);
-      return acc;
-    }, {})
-  : {};
+        if (!acc[category]) {
+          acc[category] = [];
+        }
+        acc[category].push(item);
+        return acc;
+      }, {})
+    : {};
+
+  // Her kategori içindeki blogları tarihe göre sırala (en yeni en üstte)
+  Object.keys(groupedData).forEach((category) => {
+    groupedData[category].sort((a, b) => {
+      const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+      const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+      return dateB - dateA; // Azalan sıralama (en yeni en üstte)
+    });
+  });
 
   return (
     <div className="w-1/5 inline-block border-r-[1px] pr-2 border-solid border-primary-dark dark:border-primary-light">

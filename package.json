@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start -p 3002",
     "export": "next export",
-    "lint": "next lint"
+    "lint": "next lint",
+    "create-user": "node scripts/create-user.js",
+    "list-users": "node scripts/list-users.js"
   },
   "dependencies": {
     "@apollo/client": "^3.10.6",
@@ -30,6 +32,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.52.0",
+    "sass": "^1.97.1",
     "ts-node": "^10.9.2",
     "yup": "^1.4.0"
   },

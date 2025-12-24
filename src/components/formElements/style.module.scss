@@ -1,4 +1,13 @@
 .shadow {
   // box-shadow: 1px 1px 5px #ddd;
-  padding: 8px;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  
+  &:focus {
+    outline: none;
+    border-color: #333;
+  }
 }

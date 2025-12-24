@@ -13,6 +13,8 @@ export interface BlogDataType {
   id?: string;
   createdAt?: Date;
   category: string;
+  featured?: boolean | string | number;
+  like?: number;
 }
 
 interface BlogProviderType {

@@ -3,6 +3,9 @@ import BlogContent from '@/components/blog/blogContent';
 import { Suspense } from 'react';
 import Loading from './loading';
 
+// ISR: Her 60 saniyede bir sayfayı yeniden oluştur
+export const revalidate = 60;
+
 export default async function Home() {
   const latestBlogData = await getBlog.getAllBlog();
 

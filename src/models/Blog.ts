@@ -10,6 +10,7 @@ export interface IBlogPost extends Document {
   videos?: string;
   like?: number;
   category: string;
+  featured?: boolean;
 }
 
 const blogPostSchema: Schema<IBlogPost> = new mongoose.Schema({
@@ -27,10 +28,14 @@ const blogPostSchema: Schema<IBlogPost> = new mongoose.Schema({
   updatedAt: { type: Date, default: Date.now },
   images: [String],
   videos: String,
-  like: { type: Number },
+  like: { type: Number, default: 0 },
   category: {
     type: String,
     required: [true, 'Server Error! Kategori belirtilmeli.'],
+  },
+  featured: {
+    type: Boolean,
+    default: false,
   },
 },{ collection: 'blogposts' });
 
@@ -39,6 +44,10 @@ blogPostSchema.set('toJSON', {
     returnedObject.id = returnedObject._id.toString();
     delete returnedObject._id;
     delete returnedObject.__v;
+    // Like alanı undefined veya null ise 0 yap
+    if (returnedObject.like === undefined || returnedObject.like === null) {
+      returnedObject.like = 0;
+    }
   },
 });
 
