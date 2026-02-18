@@ -129,10 +129,10 @@ const Items = ({ data }: { data: BlogDataType }) => {
       <span className="mr-5 pr-5 border-r-[1px] border-solid border-primary-dark dark:border-primary-light">
         {data.createdAt ? data.createdAt.toString().slice(0, 10) : ' '}
       </span>
-      <span className="mr-5 pr-5 border-r-[1px] border-solid border-primary-dark dark:border-primary-light">
+      <span className="mr-5 pr-5 border-solid border-primary-dark dark:border-primary-light">
         {data.category ? data.category : 'Blog'}
       </span>
-      <span
+      {/* <span
         onClick={handleLike}
         className={`inline-flex items-center gap-1 cursor-pointer ${
           isLiked
@@ -146,7 +146,7 @@ const Items = ({ data }: { data: BlogDataType }) => {
         <HeartIcon filled={isLiked} />
         <span>Beğen</span>
         {isLoading ? <span>...</span> : <span>{likeCount}</span>}
-      </span>
+      </span> */}
     </div>
   );
 };

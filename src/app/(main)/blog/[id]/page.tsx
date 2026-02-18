@@ -12,7 +12,7 @@ async function BlogDetailContent({ id }: { id: string }) {
   try {
     await dbConnect();
     const blogData = await BlogPost.findById(id);
-    
+
     if (!blogData) {
       return (
         <div className="flex items-center justify-center min-h-screen py-4 md:py-8 px-2 md:px-4">
@@ -29,28 +29,28 @@ async function BlogDetailContent({ id }: { id: string }) {
       <div className="flex items-center justify-center min-h-screen py-4 md:py-8 px-2 md:px-4">
         {/* Parşömen Container */}
         <div
-          className="relative w-full max-w-4xl mx-auto md:min-h-[600px] md:pt-[100px] md:pb-[100px] md:pl-[80px] md:pr-[80px]"
+          className="relative w-full max-w-5xl mx-auto md:min-h-[700px] md:pt-[120px] md:pb-[120px] md:pl-[100px] md:pr-[100px]"
           style={{
             backgroundImage: 'url(/parsomen.png)',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
-            minHeight: '930px',
-            paddingTop: '80px',
-            paddingBottom: '80px',
-            paddingLeft: '60px',
-            paddingRight: '60px',
+            minHeight: '1000px',
+            paddingTop: '100px',
+            paddingBottom: '100px',
+            paddingLeft: '80px',
+            paddingRight: '80px',
           }}
         >
           {/* Scrollable Content Area */}
           <div
-            className="overflow-y-auto md:max-h-[calc(100vh-300px)]"
+            className="overflow-y-auto md:max-h-[calc(100vh-350px)]"
             style={{
-              maxHeight: 'calc(100vh - 200px)',
-              paddingRight: '20px',
-              paddingLeft: '20px',
-              paddingTop: '20px',
-              paddingBottom: '20px',
+              maxHeight: 'calc(120vh - 150px)',
+              paddingRight: '40px',
+              paddingLeft: '40px',
+              paddingTop: '40px',
+              paddingBottom: '40px',
             }}
           >
             <div className="text-gray-800">

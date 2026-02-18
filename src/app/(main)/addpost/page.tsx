@@ -221,6 +221,7 @@ const AddPost = () => {
             <option value="Alıntı">Alıntı</option>
             <option value="Soğuk Ses">Soğuk Ses</option>
             <option value="Kar Beyrut Kar">Kar Beyrut Kar</option>
+            <option value="Söyleşi">Söyleşi</option>
           </select>
           {errors.category && (
             <p className="mt-1 text-sm text-red-600">
