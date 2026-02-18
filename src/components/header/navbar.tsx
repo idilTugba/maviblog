@@ -22,18 +22,24 @@ const Navbar = () => {
     >
       <ul className="flex flex-wrap justify-center md:justify-start gap-2 md:gap-0 mb-3 md:mb-0">
         <li>
-          <Link href="/" className="text-sm md:text-base">ANA SAYFA</Link>
+          <Link href="/" className="text-sm md:text-base">
+            ANA SAYFA
+          </Link>
         </li>
         <li>
-          <Link href="/about" className="text-sm md:text-base">HAKKINDA</Link>
+          <Link href="/about" className="text-sm md:text-base">
+            HAKKINDA
+          </Link>
         </li>
         {isAuthenticated && (
           <li>
-            <Link href="/addpost" className="text-sm md:text-base">YENİ YAZI</Link>
+            <Link href="/addpost" className="text-sm md:text-base">
+              YENİ YAZI
+            </Link>
           </li>
         )}
       </ul>
-      <div className={`${style.search}`}>
+      {/* <div className={`${style.search}`}>
         <Input placeholder="Yazı Ara" className="h-[40px] text-sm md:text-base" />
         <button
           onClick={handleToggleTheme}
@@ -41,7 +47,7 @@ const Navbar = () => {
         >
           {theme === 'light' ? 'Dark' : 'Light'} Mode
         </button>
-      </div>
+      </div> */}
     </nav>
   );
 };
