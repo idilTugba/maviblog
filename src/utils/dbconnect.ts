@@ -28,14 +28,14 @@ const dbConnect = async () => {
       bufferCommands: false,
     };
 
-    cached.promise = mongoose.connect(url, opts).then((mongoose) => {
+    cached.promise = mongoose.connect(url, opts).then((mongooseInstance) => {
       console.log('✅ MongoDB connected successfully');
-      return mongoose;
+      return mongooseInstance;
     }).catch((error: any) => {
       cached.promise = null; // Hata durumunda promise'i temizle
       console.error('❌ MongoDB connection error:', error.message);
       throw new Error(`MongoDB bağlantı hatası: ${error.message}. Lütfen MongoDB'nin çalıştığından emin olun.`);
-    });
+    }) as Promise<typeof mongoose>;
   }
 
   try {
