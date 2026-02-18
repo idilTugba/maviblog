@@ -34,12 +34,32 @@ const BlogDetail = ({ data }: { data: BlogDataType }) => {
     ? `${style.blogdetail} ${style.sumbulHanim}`
     : style.blogdetail;
 
+  // Resim yoksa content tam genişlikte olmalı
+  const hasImage = !!imageSrc;
+  const containerClassName = hasImage
+    ? className
+    : `${className} ${style.blogdetail_no_image}`;
+  const contentClassName = hasImage
+    ? style.blogdetail_content
+    : `${style.blogdetail_content} ${style.blogdetail_content_fullwidth}`;
+
   return (
     <div
-      className={className}
+      className={containerClassName}
       style={isSumbulHanim ? { fontFamily: "'Italianno', cursive" } : undefined}
     >
-      <div className={style.blogdetail_content_fullwidth}>
+      {hasImage && (
+        <div className={style.blogdetail_image}>
+          <Image
+            className="w-full max-h-[400px]"
+            src={imageSrc}
+            alt={data.title}
+            width={500}
+            height={200}
+          />
+        </div>
+      )}
+      <div className={contentClassName}>
         {data.videos && data.videos.length > 0 && (
           <iframe
             width="100%"
@@ -57,17 +77,6 @@ const BlogDetail = ({ data }: { data: BlogDataType }) => {
             return <p key={index}>{paragraph.trim()}</p>;
           })}
         </div>
-        {imageSrc && (
-          <div className={style.blogdetail_image}>
-            <Image
-              className="w-full max-h-[400px]"
-              src={imageSrc}
-              alt={data.title}
-              width={500}
-              height={200}
-            />
-          </div>
-        )}
       </div>
     </div>
   );

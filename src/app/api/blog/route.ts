@@ -4,13 +4,14 @@ import { getAuthUser } from '@/utils/auth';
 import { revalidatePath } from 'next/cache';
 
 export async function GET() {
-  await dbConnect();
   try {
+    await dbConnect();
     // En yeni yazılar en üstte olacak şekilde sırala (createdAt'e göre azalan)
     const data = await BlogPost.find().sort({ createdAt: -1 });
     // console.log('Blog data:', data);
     return Response.json({ blogs: data }, { status: 200 });
   } catch (error) {
+    console.error('❌ GET /api/blog error:', error);
     if (error instanceof Error) {
       return Response.json(
         { error: error.message || 'Data alınamadı' },
@@ -18,7 +19,7 @@ export async function GET() {
       );
     } else {
       return Response.json(
-        { error: error || 'Data alınamadı' },
+        { error: 'Data alınamadı. MongoDB bağlantısını kontrol edin.' },
         { status: 500 }
       );
     }
@@ -35,9 +36,9 @@ export async function POST(req: Request) {
     );
   }
 
-  await dbConnect();
-  const data = await req.json();
   try {
+    await dbConnect();
+    const data = await req.json();
     const newBlog = new BlogPost({
       title: data.title,
       content: data.content,
@@ -68,6 +69,7 @@ export async function POST(req: Request) {
 
     return Response.json({ blog: savedBlog.toJSON() }, { status: 201 });
   } catch (error) {
+    console.error('❌ POST /api/blog error:', error);
     if (error instanceof Error) {
       return Response.json(
         { error: error.message || 'Blog bilinmeyen bir sebepten eklenemedi' },
@@ -75,7 +77,7 @@ export async function POST(req: Request) {
       );
     } else {
       return Response.json(
-        { error: error || 'Blog bilinmeyen bir sebepten eklenemedi' },
+        { error: 'Blog eklenemedi. MongoDB bağlantısını kontrol edin.' },
         { status: 500 }
       );
     }

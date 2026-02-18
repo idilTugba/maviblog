@@ -6,11 +6,14 @@ import { BlogDataFromDB } from '@/context/blogContext';
 
 async function BlogContent({ blogs }: { blogs: Promise<BlogDataFromDB> }) {
   const data = await blogs;
+  // Güvenli default değerler
+  const blogsArray = data?.blogs || [];
+
   return (
     <>
-      <LeftSide data={data.blogs} />
-      <CenterSide data={data.blogs} />
-      <RightSide data={data.blogs} />
+      <LeftSide data={blogsArray} />
+      <CenterSide data={blogsArray} />
+      <RightSide data={blogsArray} />
     </>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
-import React, { useEffect, memo, useState } from 'react';
-import { BlogDataType, useBlogData } from '@/context/blogContext';
+import React, { useEffect, useState } from 'react';
+import { BlogDataType } from '@/context/blogContext';
 import Image from 'next/image';
 import Link from 'next/link';
 import Items from './items';
@@ -12,11 +12,6 @@ const BlogList = function BlogList({
   data: BlogDataType[];
   className?: string;
 }) {
-  const { blogData, setBlogData } = useBlogData();
-  useEffect(() => {
-    setBlogData(data);
-  }, [data, setBlogData]);
-
   const [showIframe, setShowIframe] = useState(false);
 
   useEffect(() => {
@@ -26,16 +21,44 @@ const BlogList = function BlogList({
   return (
     <div>
       {data?.map((item, index) => {
+        // Resim path'ini düzelt - public klasöründeki resimler için
+        // images hem string[] hem de string olabilir
+        const getImageSrc = (images: string[] | string | undefined): string | null => {
+          if (!images) return null;
+          
+          // Eğer string ise direkt kullan
+          if (typeof images === 'string') {
+            const img = images.trim();
+            if (!img) return null;
+            if (img.startsWith('http://') || img.startsWith('https://')) return img;
+            if (img.startsWith('/')) return img;
+            return `/${img}`;
+          }
+          
+          // Eğer array ise ilk elemanı al
+          if (Array.isArray(images) && images.length > 0) {
+            const img = images[0].trim();
+            if (!img) return null;
+            if (img.startsWith('http://') || img.startsWith('https://')) return img;
+            if (img.startsWith('/')) return img;
+            return `/${img}`;
+          }
+          
+          return null;
+        };
+
+        const imageSrc = getImageSrc(item.images);
+
         return (
           
           <article
             className={`${className} mb-4 border-primary-darksecond dark:border-primary-lightsecond`}
             key={index + item.title}
           >
-            {item.images && item.images.length > 0 && (
+            {imageSrc && (
               <Image
                 className="w-full max-h-[400px]"
-                src={item.images[0]}
+                src={imageSrc}
                 alt={item.title}
                 width={500}
                 height={200}

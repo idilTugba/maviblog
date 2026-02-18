@@ -1,24 +1,21 @@
-import getBlog from '@/utils/blogData';
-import BlogContent from '@/components/blog/blogContent';
-import { Suspense } from 'react';
-import Loading from './loading';
+import Link from 'next/link';
 
-// ISR: Her 60 saniyede bir sayfayı yeniden oluştur
-export const revalidate = 60;
-
-export default async function Home() {
-  const latestBlogData = await getBlog.getAllBlog();
-
-  // console.log('Latest Blog Data:', latestBlogData);
+export default function Home() {
   return (
-    <main className="flex flex-col md:flex-row text-left mt-8 gap-5">
-      <Suspense fallback={<Loading />}>
-        {latestBlogData ? (
-          <BlogContent blogs={latestBlogData} />
-        ) : (
-          <p>Data Yüklenirken bir hata oluştu.</p>
-        )}
-      </Suspense>
-    </main>
+    <div
+      className="fixed inset-0 flex items-center justify-center bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: 'url(/homebg.jpg)',
+      }}
+    >
+      <div className="text-center">
+        <Link
+          href="/blog"
+          className="inline-block bg-[#c5c69a] text-[#332f23] font-semibold text-lg px-12 py-5 rounded-[2rem] hover:bg-gray-50 transition-colors duration-200 shadow-md hover:shadow-lg"
+        >
+          GİRİŞ
+        </Link>
+      </div>
+    </div>
   );
 }

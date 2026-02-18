@@ -6,9 +6,16 @@ const getAllBlog = cache(async () => {
     const data = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/blog`);
     const allBlogData = await data.data;
     // console.log('All Blog Data:', allBlogData);
-    return allBlogData;
+    // API'den gelen veriyi kontrol et ve güvenli bir format döndür
+    if (allBlogData && allBlogData.blogs) {
+      return allBlogData;
+    }
+    // Eğer blogs property yoksa, boş array ile döndür
+    return { blogs: [] };
   } catch (error) {
-    return error;
+    console.error('Error fetching blogs:', error);
+    // Hata durumunda boş array döndür, error objesi değil
+    return { blogs: [] };
   }
 });
 

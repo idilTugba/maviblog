@@ -3,6 +3,20 @@ import BlogList from '../blog/blogList';
 import style from './styles.module.scss';
 
 const RightSide = ({ data }: { data: BlogDataType[] }) => {
+  // Güvenli default değer - data undefined veya array değilse boş array kullan
+  if (!data || !Array.isArray(data)) {
+    return (
+      <div className="w-full md:w-2/5 border-l-0 md:border-l-gray-700 border-t-[1px] md:border-t-0 pt-5 md:pt-0 mt-5 md:mt-0 inline-block order-3 md:order-none">
+        <h4 className="pb-4 mb-6 text-2xl md:text-3xl font-semibold border-solid border-b-2 w-full border-primary-dark dark:border-primary-light">
+          Özel Seçkiler
+        </h4>
+        <p className="text-gray-500 dark:text-gray-400">
+          Henüz özel seçki blog yok.
+        </p>
+      </div>
+    );
+  }
+  
   // Sadece özel seçki olan blogları filtrele
   // featured değeri true, "true" string'i veya 1 olabilir
   const featuredBlogs = data

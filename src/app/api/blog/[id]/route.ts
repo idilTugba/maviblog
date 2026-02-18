@@ -5,13 +5,16 @@ export async function GET(
   req: Request,
   { params }: { params: { id: string } }
 ) {
-  await dbConnect();
   try {
+    await dbConnect();
     console.log('BLOG ID', params.id);
     const blog = await BlogPost.findById(params.id);
-    if (!blog) Response.json({ error: 'Blog bulunamadı' }, { status: 404 });
+    if (!blog) {
+      return Response.json({ error: 'Blog bulunamadı' }, { status: 404 });
+    }
     return Response.json({ blog }, { status: 200 });
   } catch (error) {
+    console.error('❌ GET /api/blog/[id] error:', error);
     if (error instanceof Error) {
       return Response.json(
         { error: error.message || 'Blog alınırken bir hata oluştu' },
@@ -19,7 +22,7 @@ export async function GET(
       );
     } else {
       return Response.json(
-        { error: error || 'Blog alınırken bir hata oluştu' },
+        { error: 'Blog alınamadı. MongoDB bağlantısını kontrol edin.' },
         { status: 500 }
       );
     }
@@ -30,8 +33,8 @@ export async function PATCH(
   req: Request,
   { params }: { params: { id: string } }
 ) {
-  await dbConnect();
   try {
+    await dbConnect();
     const data = await req.json();
     const blog = await BlogPost.findByIdAndUpdate(
       params.id,
@@ -43,6 +46,7 @@ export async function PATCH(
     }
     return Response.json({ blog }, { status: 200 });
   } catch (error) {
+    console.error('❌ PATCH /api/blog/[id] error:', error);
     if (error instanceof Error) {
       return Response.json(
         { error: error.message || 'Blog güncellenirken bir hata oluştu' },
@@ -50,7 +54,7 @@ export async function PATCH(
       );
     } else {
       return Response.json(
-        { error: error || 'Blog güncellenirken bir hata oluştu' },
+        { error: 'Blog güncellenemedi. MongoDB bağlantısını kontrol edin.' },
         { status: 500 }
       );
     }
