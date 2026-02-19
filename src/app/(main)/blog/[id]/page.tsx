@@ -26,31 +26,26 @@ async function BlogDetailContent({ id }: { id: string }) {
     const blog = blogData.toJSON() as BlogDataType;
 
     return (
-      <div className="flex items-center justify-center min-h-screen py-4 md:py-8 px-2 md:px-4">
+      <div className="flex items-center justify-center min-h-screen py-2 md:py-4 lg:py-8 px-1 sm:px-2 md:px-4">
         {/* Parşömen Container */}
         <div
-          className="relative w-full max-w-5xl mx-auto md:min-h-[700px] md:pt-[120px] md:pb-[120px] md:pl-[100px] md:pr-[100px]"
+          className="relative w-[95%] sm:w-[90%] md:w-full max-w-5xl mx-auto min-h-[600px] sm:min-h-[700px] md:min-h-[800px] lg:min-h-[1000px] pt-[150px] pb-[150px] pr-[30px] pl-[30px] sm:pt-[300px] sm:pb-[200px] sm:pl-[50px] sm:pr-[50px] md:pt-[200px] md:pb-[200px] md:pl-[70px] md:pr-[70px] lg:pt-[120px] lg:pb-[120px] lg:pl-[100px] lg:pr-[100px] "
           style={{
             backgroundImage: 'url(/parsomen.png)',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
-            minHeight: '1000px',
-            paddingTop: '100px',
-            paddingBottom: '100px',
-            paddingLeft: '80px',
-            paddingRight: '80px',
           }}
         >
           {/* Scrollable Content Area */}
           <div
-            className="overflow-y-auto md:max-h-[calc(100vh-350px)]"
+            className="overflow-y-auto sm:max-h-[calc(100vh-200px)] md:max-h-[calc(100vh-300px)] lg:max-h-[calc(100vh-350px)] sm:pr-[25px] md:pr-[30px] lg:pr-[40px] sm:pl-[25px] md:pl-[30px] lg:pl-[40px] sm:pt-[25px] md:pt-[30px] lg:pt-[40px] sm:pb-[25px] md:pb-[30px] lg:pb-[40px]"
             style={{
-              maxHeight: 'calc(120vh - 150px)',
-              paddingRight: '40px',
-              paddingLeft: '40px',
-              paddingTop: '40px',
-              paddingBottom: '40px',
+              maxHeight: 'calc(100vh - 150px)',
+              paddingRight: '15px',
+              paddingLeft: '15px',
+              paddingTop: '15px',
+              paddingBottom: '15px',
             }}
           >
             <div className="text-gray-800">
