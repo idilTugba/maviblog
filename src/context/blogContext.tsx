@@ -9,6 +9,7 @@ export interface BlogDataType {
   title: string;
   content: string;
   images?: string[] | string;
+  imageCaption?: string;
   videos?: string;
   id?: string;
   createdAt?: Date;

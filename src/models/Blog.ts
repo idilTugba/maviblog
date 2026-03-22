@@ -7,6 +7,7 @@ export interface IBlogPost extends Document {
   createdAt: Date;
   updatedAt: Date;
   images?: string[];
+  imageCaption?: string;
   videos?: string;
   like?: number;
   category: string;
@@ -27,6 +28,7 @@ const blogPostSchema: Schema<IBlogPost> = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
   images: [String],
+  imageCaption: String,
   videos: String,
   like: { type: Number, default: 0 },
   category: {
@@ -50,6 +52,11 @@ blogPostSchema.set('toJSON', {
     }
   },
 });
+
+// Next.js dev modunda schema değişikliklerini algılamak için cache temizle
+if (process.env.NODE_ENV === 'development' && mongoose.models.BlogPost) {
+  delete mongoose.models.BlogPost;
+}
 
 const BlogPost =
   mongoose.models.BlogPost ||

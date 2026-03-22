@@ -39,12 +39,16 @@ export async function POST(req: Request) {
   try {
     await dbConnect();
     const data = await req.json();
+
+    const imageCaption = typeof data.imageCaption === 'string' ? data.imageCaption.trim() : '';
+
     const newBlog = new BlogPost({
       title: data.title,
       content: data.content,
       category: data.category,
       featured: data.featured || false,
       images: data.images && data.images.length > 0 ? data.images : undefined,
+      ...(imageCaption && { imageCaption }),
       videos: data.videos || undefined,
       like: 0,
     });

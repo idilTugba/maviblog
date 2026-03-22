@@ -66,6 +66,11 @@ const BlogDetail = ({ data }: { data: BlogDataType }) => {
               width={500}
               height={200}
             />
+            {data.imageCaption && (
+              <p className="mt-3 text-center text-gray-600 italic text-sm md:text-base">
+                {data.imageCaption}
+              </p>
+            )}
           </div>
         )}
       </div>

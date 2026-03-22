@@ -11,6 +11,7 @@ interface formType {
   content: string;
   category: string;
   images?: string[];
+  imageCaption?: string;
   videos?: string;
   featured?: boolean;
 }
@@ -26,6 +27,7 @@ const postValidateSchema = yup.object({
     .required('İçerik gereklidir'),
   category: yup.string().required('Kategori seçiniz'),
   images: yup.array().of(yup.string()).optional().default([]),
+  imageCaption: yup.string().optional().default(''),
   videos: yup.string().optional().default(''),
   featured: yup.boolean().optional().default(false),
 }) as yup.ObjectSchema<formType>;
@@ -44,6 +46,7 @@ const AddPost = () => {
       content: '',
       category: '',
       images: [],
+      imageCaption: '',
       videos: '',
       featured: false,
     },
@@ -101,6 +104,7 @@ const AddPost = () => {
         const formData = {
           ...data,
           images: validImages.length > 0 ? validImages : undefined,
+          imageCaption: data.imageCaption?.trim() ?? '',
           videos: data.videos?.trim() || undefined,
         };
 
@@ -262,6 +266,22 @@ const AddPost = () => {
           >
             + Resim Ekle
           </button>
+        </div>
+
+        {/* Resim Altı Yazı */}
+        <div className="relative">
+          <label className="block mb-2 font-semibold">
+            Resim Altı Yazı
+          </label>
+          <input
+            {...register('imageCaption')}
+            type="text"
+            placeholder="Resmin altında görünecek açıklama veya yazı (opsiyonel)"
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+          />
+          <p className="mt-1 text-sm text-gray-500">
+            Bu metin blog detay sayfasında resmin hemen altında görünür.
+          </p>
         </div>
 
         {/* Video URL */}
