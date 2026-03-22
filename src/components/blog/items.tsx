@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { BlogDataType } from '@/context/blogContext';
-import axios from 'axios';
+import ShareButton from './ShareButton';
 
 // localStorage key
 const LIKED_POSTS_KEY = 'maviblog_liked_posts';
@@ -125,13 +125,14 @@ const Items = ({ data }: { data: BlogDataType }) => {
   );
 
   return (
-    <div className="items mt-2 mb-2 text-sm font-[500] flex items-center">
+    <div className="items mt-2 mb-2 text-sm font-[500] flex items-center flex-wrap gap-2">
       <span className="mr-5 pr-5 border-r-[1px] border-solid border-primary-dark dark:border-primary-light">
         {data.createdAt ? data.createdAt.toString().slice(0, 10) : ' '}
       </span>
       <span className="mr-5 pr-5 border-solid border-primary-dark dark:border-primary-light">
         {data.category ? data.category : 'Blog'}
       </span>
+      <ShareButton title={data.title} />
       {/* <span
         onClick={handleLike}
         className={`inline-flex items-center gap-1 cursor-pointer ${
