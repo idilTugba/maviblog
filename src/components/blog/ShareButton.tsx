@@ -10,8 +10,7 @@ const ShareButton = ({ title }: ShareButtonProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [copyFeedback, setCopyFeedback] = useState(false);
 
-  const shareUrl =
-    typeof window !== 'undefined' ? window.location.href : '';
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
   const shareText = title;
 
   const shareActions = {
@@ -32,14 +31,14 @@ const ShareButton = ({ title }: ShareButtonProps) => {
     },
     twitter: () => {
       const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-        shareText
+        shareText,
       )}&url=${encodeURIComponent(shareUrl)}`;
       window.open(url, '_blank', 'noopener,noreferrer');
       setIsOpen(false);
     },
     facebook: () => {
       const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-        shareUrl
+        shareUrl,
       )}`;
       window.open(url, '_blank', 'noopener,noreferrer');
       setIsOpen(false);
@@ -52,7 +51,7 @@ const ShareButton = ({ title }: ShareButtonProps) => {
     },
     telegram: () => {
       const url = `https://t.me/share/url?url=${encodeURIComponent(
-        shareUrl
+        shareUrl,
       )}&text=${encodeURIComponent(shareText)}`;
       window.open(url, '_blank', 'noopener,noreferrer');
       setIsOpen(false);
@@ -63,7 +62,11 @@ const ShareButton = ({ title }: ShareButtonProps) => {
     instagram: () => {
       // Instagram web'den doğrudan paylaşım desteklemiyor; linki kopyala + uygulama aç
       copyLink();
-      window.open('https://www.instagram.com/', '_blank', 'noopener,noreferrer');
+      window.open(
+        'https://www.instagram.com/',
+        '_blank',
+        'noopener,noreferrer',
+      );
       setIsOpen(false);
     },
   };
@@ -93,7 +96,11 @@ const ShareButton = ({ title }: ShareButtonProps) => {
     { key: 'whatsapp', label: "WhatsApp'ta paylaş", icon: '💬' },
     { key: 'telegram', label: "Telegram'da paylaş", icon: '✈️' },
     { key: 'copyLink', label: 'Link kopyala', icon: '🔗' },
-    { key: 'instagram', label: "Instagram'da paylaş", icon: '📷' },
+    {
+      key: 'instagram',
+      label: "Instagram'da paylaşma linki kopyala, uygulamayı aç",
+      icon: '📷',
+    },
   ];
 
   return (
