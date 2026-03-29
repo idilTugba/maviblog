@@ -14,14 +14,20 @@ const nextConfig = {
       },
     ],
   },
+  // Dev: disable webpack filesystem cache to avoid stale chunk refs (Cannot find module './948.js').
+  // Polling helps EMFILE / flaky file watchers on macOS.
+  webpack: (config, { dev }) => {
+    if (dev) {
+      config.cache = false;
+      config.watchOptions = {
+        ...config.watchOptions,
+        poll: 1000,
+        aggregateTimeout: 300,
+      };
+    }
+    return config;
+  },
   // output: 'export',
-  // enable top-level await support for Webpack
-  // webpack: (config) => {
-  //   config.experiments = {
-  //     topLevelAwait: true
-  //   };
-  //   return config;
-  // },
 };
 
 export default nextConfig;

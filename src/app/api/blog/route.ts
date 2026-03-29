@@ -41,12 +41,15 @@ export async function POST(req: Request) {
     const data = await req.json();
 
     const imageCaption = typeof data.imageCaption === 'string' ? data.imageCaption.trim() : '';
+    const detailVariant =
+      data.detailVariant === 'clean' ? 'clean' : 'default';
 
     const newBlog = new BlogPost({
       title: data.title,
       content: data.content,
       category: data.category,
       featured: data.featured || false,
+      detailVariant,
       images: data.images && data.images.length > 0 ? data.images : undefined,
       ...(imageCaption && { imageCaption }),
       videos: data.videos || undefined,

@@ -27,6 +27,11 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
+          <Link href="/blog" className="text-sm md:text-base">
+            BLOG
+          </Link>
+        </li>
+        <li>
           <Link href="/about" className="text-sm md:text-base">
             HAKKINDA
           </Link>

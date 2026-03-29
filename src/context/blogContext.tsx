@@ -16,6 +16,8 @@ export interface BlogDataType {
   category: string;
   featured?: boolean | string | number;
   like?: number;
+  /** Parşömen (default) veya beyaz tam uzunluk (clean) detay şablonu */
+  detailVariant?: 'default' | 'clean';
 }
 
 interface BlogProviderType {

@@ -14,6 +14,7 @@ interface formType {
   imageCaption?: string;
   videos?: string;
   featured?: boolean;
+  detailVariant: 'default' | 'clean';
 }
 
 const postValidateSchema = yup.object({
@@ -30,6 +31,10 @@ const postValidateSchema = yup.object({
   imageCaption: yup.string().optional().default(''),
   videos: yup.string().optional().default(''),
   featured: yup.boolean().optional().default(false),
+  detailVariant: yup
+    .string()
+    .oneOf(['default', 'clean'])
+    .required(),
 }) as yup.ObjectSchema<formType>;
 
 const AddPost = () => {
@@ -49,6 +54,7 @@ const AddPost = () => {
       imageCaption: '',
       videos: '',
       featured: false,
+      detailVariant: 'default',
     },
   });
 
@@ -106,6 +112,7 @@ const AddPost = () => {
           images: validImages.length > 0 ? validImages : undefined,
           imageCaption: data.imageCaption?.trim() ?? '',
           videos: data.videos?.trim() || undefined,
+          detailVariant: data.detailVariant,
         };
 
         console.log('Form data:', formData);
@@ -230,6 +237,32 @@ const AddPost = () => {
           {errors.category && (
             <p className="mt-1 text-sm text-red-600">
               {errors.category.message}
+            </p>
+          )}
+        </div>
+
+        {/* Detay sayfası görünümü */}
+        <div className="relative">
+          <label className="block mb-2 font-semibold">
+            Detay sayfası görünümü *
+          </label>
+          <select
+            {...register('detailVariant')}
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+          >
+            <option value="default">Parşömen (klasik, kaydırmalı alan)</option>
+            <option value="clean">
+              Beyaz (tam uzunluk, sayfa scroll)
+            </option>
+          </select>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+            Normal linkte bu seçim geçerlidir. Link sonuna{' '}
+            <code className="text-xs">?variant=clean</code> veya{' '}
+            <code className="text-xs">?variant=default</code> eklenirse o önceliklidir.
+          </p>
+          {errors.detailVariant && (
+            <p className="mt-1 text-sm text-red-600">
+              {errors.detailVariant.message as string}
             </p>
           )}
         </div>

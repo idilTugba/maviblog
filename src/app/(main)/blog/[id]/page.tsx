@@ -8,7 +8,30 @@ import { BlogDataType } from '@/context/blogContext';
 // ISR: Her 60 saniyede bir sayfayı yeniden oluştur
 export const revalidate = 60;
 
-async function BlogDetailContent({ id }: { id: string }) {
+type BlogDetailVariant = 'default' | 'clean';
+
+type BlogDetailSearchParams = { variant?: string | string[] };
+
+function resolveBlogDetailVariant(
+  searchParams: BlogDetailSearchParams | undefined,
+  stored: BlogDetailVariant
+): BlogDetailVariant {
+  const raw = searchParams?.variant;
+  if (raw !== undefined && raw !== null && raw !== '') {
+    const v = Array.isArray(raw) ? raw[0] : raw;
+    if (v === 'clean') return 'clean';
+    if (v === 'default') return 'default';
+  }
+  return stored;
+}
+
+async function BlogDetailContent({
+  id,
+  searchParams,
+}: {
+  id: string;
+  searchParams?: BlogDetailSearchParams;
+}) {
   try {
     await dbConnect();
     const blogData = await BlogPost.findById(id);
@@ -24,6 +47,21 @@ async function BlogDetailContent({ id }: { id: string }) {
     }
 
     const blog = blogData.toJSON() as BlogDataType;
+    const storedVariant: BlogDetailVariant =
+      blog.detailVariant === 'clean' ? 'clean' : 'default';
+    const variant = resolveBlogDetailVariant(searchParams, storedVariant);
+
+    if (variant === 'clean') {
+      return (
+        <div className="w-full py-6 md:py-10 px-4 sm:px-6 md:px-8">
+          <div className="max-w-5xl mx-auto w-full bg-white rounded-lg shadow-sm border border-gray-100 px-5 py-8 sm:px-8 sm:py-10 md:px-12 md:py-12">
+            <div className="text-gray-800">
+              <BlogDetail data={blog} />
+            </div>
+          </div>
+        </div>
+      );
+    }
 
     return (
       <div className="flex items-center justify-center min-h-screen py-2 md:py-4 lg:py-8 px-1 sm:px-2 md:px-4">
@@ -83,10 +121,16 @@ export async function generateStaticParams() {
   }
 }
 
-const Blog = async ({ params }: { params: { id: string } }) => {
+const Blog = async ({
+  params,
+  searchParams,
+}: {
+  params: { id: string };
+  searchParams?: BlogDetailSearchParams;
+}) => {
   return (
     <Suspense fallback={<Loading />}>
-      <BlogDetailContent id={params.id} />
+      <BlogDetailContent id={params.id} searchParams={searchParams} />
     </Suspense>
   );
 };

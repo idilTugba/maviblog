@@ -12,6 +12,8 @@ export interface IBlogPost extends Document {
   like?: number;
   category: string;
   featured?: boolean;
+  /** Detay sayfası görünümü: parşömen veya beyaz akışan düzen */
+  detailVariant?: 'default' | 'clean';
 }
 
 const blogPostSchema: Schema<IBlogPost> = new mongoose.Schema({
@@ -38,6 +40,11 @@ const blogPostSchema: Schema<IBlogPost> = new mongoose.Schema({
   featured: {
     type: Boolean,
     default: false,
+  },
+  detailVariant: {
+    type: String,
+    enum: ['default', 'clean'],
+    default: 'default',
   },
 },{ collection: 'blogposts' });
 
