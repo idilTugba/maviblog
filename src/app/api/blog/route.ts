@@ -2,6 +2,7 @@ import dbConnect from '@/utils/dbconnect';
 import BlogPost from '@/models/Blog';
 import { getAuthUser } from '@/utils/auth';
 import { revalidatePath } from 'next/cache';
+import { notifySubscribersNewPost } from '@/utils/notifySubscribersNewPost';
 
 export async function GET() {
   try {
@@ -72,6 +73,18 @@ export async function POST(req: Request) {
     } catch (revalidateError) {
       // Revalidation hatası blog kaydını engellemesin
       console.error('⚠️ Revalidation error (non-blocking):', revalidateError);
+    }
+
+    try {
+      await notifySubscribersNewPost({
+        title: savedBlog.title,
+        postId: savedBlog._id.toString(),
+      });
+    } catch (notifyErr) {
+      console.error(
+        'Subscriber notify email failed (blog was still saved):',
+        notifyErr
+      );
     }
 
     return Response.json({ blog: savedBlog.toJSON() }, { status: 201 });
