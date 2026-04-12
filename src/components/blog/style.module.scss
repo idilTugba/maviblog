@@ -49,6 +49,13 @@
       max-width: 100%;
     }
   }
+
+  /* preserveLineBreaks: paragraf içi tek \n → görünür satır sonu */
+  .contentPreserveLines {
+    p {
+      white-space: pre-line;
+    }
+  }
   img {
     width: 100%;
     max-height: 300px;

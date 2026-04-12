@@ -44,6 +44,7 @@ export async function POST(req: Request) {
     const imageCaption = typeof data.imageCaption === 'string' ? data.imageCaption.trim() : '';
     const detailVariant =
       data.detailVariant === 'clean' ? 'clean' : 'default';
+    const preserveLineBreaks = Boolean(data.preserveLineBreaks);
 
     const newBlog = new BlogPost({
       title: data.title,
@@ -51,6 +52,7 @@ export async function POST(req: Request) {
       category: data.category,
       featured: data.featured || false,
       detailVariant,
+      preserveLineBreaks,
       images: data.images && data.images.length > 0 ? data.images : undefined,
       ...(imageCaption && { imageCaption }),
       videos: data.videos || undefined,

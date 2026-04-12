@@ -5,6 +5,8 @@ import Items from './items';
 import { BlogDataType } from '@/context/blogContext';
 
 const BlogDetail = ({ data }: { data: BlogDataType }) => {
+  const preserveLines = Boolean(data.preserveLineBreaks);
+
   const imageSrc =
     data.images && data.images.length > 0
       ? data.images[0].startsWith('/')
@@ -26,7 +28,13 @@ const BlogDetail = ({ data }: { data: BlogDataType }) => {
         )}
         <Items data={data} />
         <h1>{data.title}</h1>
-        <div className={style.content}>
+        <div
+          className={
+            preserveLines
+              ? `${style.content} ${style.contentPreserveLines}`
+              : style.content
+          }
+        >
           {data.content?.split('\n\n').map((paragraph, index) => {
             if (paragraph.trim() === '') return null;
             return <p key={index}>{paragraph.trim()}</p>;

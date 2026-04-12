@@ -14,6 +14,8 @@ export interface IBlogPost extends Document {
   featured?: boolean;
   /** Detay sayfası görünümü: parşömen veya beyaz akışan düzen */
   detailVariant?: 'default' | 'clean';
+  /** true: paragraf içindeki tek Enter ile satır kırılır (hikaye/öykü düzeni) */
+  preserveLineBreaks?: boolean;
 }
 
 const blogPostSchema: Schema<IBlogPost> = new mongoose.Schema({
@@ -45,6 +47,10 @@ const blogPostSchema: Schema<IBlogPost> = new mongoose.Schema({
     type: String,
     enum: ['default', 'clean'],
     default: 'default',
+  },
+  preserveLineBreaks: {
+    type: Boolean,
+    default: false,
   },
 },{ collection: 'blogposts' });
 

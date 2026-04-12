@@ -18,6 +18,8 @@ export interface BlogDataType {
   like?: number;
   /** Parşömen (default) veya beyaz tam uzunluk (clean) detay şablonu */
   detailVariant?: 'default' | 'clean';
+  /** Öykü metni: tek Enter ile satır sonu korunur */
+  preserveLineBreaks?: boolean;
 }
 
 interface BlogProviderType {

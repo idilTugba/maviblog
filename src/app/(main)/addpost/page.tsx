@@ -15,6 +15,7 @@ interface formType {
   videos?: string;
   featured?: boolean;
   detailVariant: 'default' | 'clean';
+  preserveLineBreaks?: boolean;
 }
 
 const postValidateSchema = yup.object({
@@ -35,6 +36,7 @@ const postValidateSchema = yup.object({
     .string()
     .oneOf(['default', 'clean'])
     .required(),
+  preserveLineBreaks: yup.boolean().optional().default(false),
 }) as yup.ObjectSchema<formType>;
 
 const AddPost = () => {
@@ -55,6 +57,7 @@ const AddPost = () => {
       videos: '',
       featured: false,
       detailVariant: 'default',
+      preserveLineBreaks: false,
     },
   });
 
@@ -113,6 +116,7 @@ const AddPost = () => {
           imageCaption: data.imageCaption?.trim() ?? '',
           videos: data.videos?.trim() || undefined,
           detailVariant: data.detailVariant,
+          preserveLineBreaks: data.preserveLineBreaks ?? false,
         };
 
         console.log('Form data:', formData);
@@ -211,13 +215,28 @@ const AddPost = () => {
           <textarea
             {...register('content')}
             className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white min-h-[300px]"
-            placeholder="Blog yazısının içeriğini girin (paragraflar için çift satır sonu kullanın)"
+            placeholder="Metni yapıştırın. Paragraflar arasında boş satır bırakın (çift Enter)."
           />
           {errors.content && (
             <p className="mt-1 text-sm text-red-600">
               {errors.content.message}
             </p>
           )}
+          <label className="mt-3 flex items-start gap-2 cursor-pointer">
+            <input
+              {...register('preserveLineBreaks')}
+              type="checkbox"
+              className="mt-1 w-5 h-5 shrink-0"
+            />
+            <span className="text-sm">
+              <span className="font-semibold">Satır sonlarını koru</span>
+              <span className="block text-gray-600 dark:text-gray-400 mt-0.5">
+                Açıkken her Enter ile verdiğiniz satır kırılımı ekranda da görünür
+                (öykü / şiir düzeni). Kapalıyken yalnızca paragraflar (boş satırlar)
+                ayrılır, diğer satır sonları boşluğa dönüşür.
+              </span>
+            </span>
+          </label>
         </div>
 
         {/* Kategori */}
