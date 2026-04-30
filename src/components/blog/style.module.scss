@@ -48,6 +48,19 @@
       overflow-wrap: break-word;
       max-width: 100%;
     }
+
+    a {
+      color: #1d4ed8;
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+      font-weight: 500;
+      word-break: break-word;
+
+      &:hover {
+        color: #1e3a8a;
+        text-decoration-thickness: 2px;
+      }
+    }
   }
 
   /* preserveLineBreaks: paragraf içi tek \n → görünür satır sonu */

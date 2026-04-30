@@ -215,7 +215,7 @@ const AddPost = () => {
           <textarea
             {...register('content')}
             className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white min-h-[300px]"
-            placeholder="Metni yapıştırın. Paragraflar arasında boş satır bırakın (çift Enter)."
+            placeholder="Metni yapıştırın. Paragraflar arasında boş satır bırakın (çift Enter). Link için: [görünen metin](https://ornek.com) veya metin içine doğrudan https://… adresi yazın."
           />
           {errors.content && (
             <p className="mt-1 text-sm text-red-600">

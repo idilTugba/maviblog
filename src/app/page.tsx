@@ -8,12 +8,18 @@ export default function Home() {
         backgroundImage: 'url(/homebg.jpg)',
       }}
     >
-      <p
-        className="md:leading-10 shrink-0 pt-16 md:pt-18 sm:pt-10 px-6 text-center font-serif text-[#fff] text-2xl sm:text-xl md:text-[2.5rem] tracking-wide [text-shadow:0_1px_2px_rgba(40,40,40,0.9),0_0_24px_rgba(252,245,229,0.5)]"
-        lang="tr"
-      >
-        BİR BAHÇE BİR EVDEN DAHA BÜYÜK BİR ŞEYDİR.
-      </p>
+      <figure className="mx-auto w-fit max-w-full shrink-0 px-6 pt-16 sm:pt-10 md:pt-20">
+        <blockquote
+          className="m-0 text-center font-serif text-[#fff] text-2xl sm:text-xl md:text-[2.5rem] md:leading-10 tracking-wide [text-shadow:0_1px_2px_rgba(40,40,40,0.9),0_0_24px_rgba(252,245,229,0.5)]"
+          lang="tr"
+        >
+          BİR BAHÇE BİR EVDEN DAHA BÜYÜK BİR ŞEYDİR.
+        </blockquote>
+        <figcaption className="mt-2 text-right text-sm tracking-wide text-[#fff] [text-shadow:0_1px_2px_rgba(40,40,40,0.9),0_0_24px_rgba(252,245,229,0.5)]">
+          Mavi Neşe
+        </figcaption>
+      </figure>
+
       <div className="flex flex-1 items-center justify-center">
         <div className="text-center">
           <Link
