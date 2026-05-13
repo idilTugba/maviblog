@@ -38,6 +38,34 @@ function linkifyPlainUrls(
   });
 }
 
+/** Paragraf içi `**kalın**` (Markdown) → <strong> */
+function renderBoldAndLinks(
+  text: string,
+  paragraphIndex: number,
+  keyBase: number
+): React.ReactNode[] {
+  if (!text) return [];
+  const nodes: React.ReactNode[] = [];
+  const boldRe = /\*\*(.+?)\*\*/g;
+  let last = 0;
+  let m: RegExpExecArray | null;
+  let k = keyBase;
+  while ((m = boldRe.exec(text)) !== null) {
+    if (m.index > last) {
+      nodes.push(...linkifyPlainUrls(text.slice(last, m.index), paragraphIndex, k));
+      k += 128;
+    }
+    nodes.push(
+      <strong key={`p${paragraphIndex}-b-${k++}`}>{m[1]}</strong>
+    );
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) {
+    nodes.push(...linkifyPlainUrls(text.slice(last), paragraphIndex, k));
+  }
+  return nodes;
+}
+
 function renderRichParagraph(text: string, paragraphIndex: number): React.ReactNode {
   const normalized = normalizeHtmlAnchorsToMarkdown(text);
   const out: React.ReactNode[] = [];
@@ -48,11 +76,11 @@ function renderRichParagraph(text: string, paragraphIndex: number): React.ReactN
   while (rest.length > 0) {
     const m = rest.match(md);
     if (!m || m.index === undefined) {
-      out.push(...linkifyPlainUrls(rest, paragraphIndex, linkIdx));
+      out.push(...renderBoldAndLinks(rest, paragraphIndex, linkIdx));
       break;
     }
     if (m.index > 0) {
-      out.push(...linkifyPlainUrls(rest.slice(0, m.index), paragraphIndex, linkIdx));
+      out.push(...renderBoldAndLinks(rest.slice(0, m.index), paragraphIndex, linkIdx));
       linkIdx += 32;
     }
     out.push(
@@ -62,7 +90,7 @@ function renderRichParagraph(text: string, paragraphIndex: number): React.ReactN
         target="_blank"
         rel="noopener noreferrer"
       >
-        {m[1]}
+        {renderBoldAndLinks(m[1], paragraphIndex, linkIdx)}
       </a>
     );
     rest = rest.slice(m.index + m[0].length);
