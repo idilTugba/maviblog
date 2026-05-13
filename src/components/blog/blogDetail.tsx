@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import React from 'react';
 import style from './style.module.scss';
 import Items from './items';
+import BlogImageLightbox from './BlogImageLightbox';
 import { BlogDataType } from '@/context/blogContext';
 
 /** Basit <a href="https://...">metin</a> → [metin](url) (yalnızca http/https) */
@@ -138,13 +138,7 @@ const BlogDetail = ({ data }: { data: BlogDataType }) => {
         </div>
         {imageSrc && (
           <div className={style.blogdetail_image}>
-            <Image
-              className="w-full max-h-[400px]"
-              src={imageSrc}
-              alt={data.title}
-              width={500}
-              height={200}
-            />
+            <BlogImageLightbox src={imageSrc} alt={data.title} />
             {data.imageCaption && (
               <p className="mt-3 text-center text-gray-600 italic text-sm md:text-base">
                 {data.imageCaption}

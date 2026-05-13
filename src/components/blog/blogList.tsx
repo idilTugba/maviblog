@@ -1,9 +1,9 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { BlogDataType } from '@/context/blogContext';
-import Image from 'next/image';
 import Link from 'next/link';
 import Items from './items';
+import BlogImageLightbox from './BlogImageLightbox';
 
 const BlogList = function BlogList({
   data,
@@ -56,13 +56,7 @@ const BlogList = function BlogList({
             key={index + item.title}
           >
             {imageSrc && (
-              <Image
-                className="w-full max-h-[400px]"
-                src={imageSrc}
-                alt={item.title}
-                width={500}
-                height={200}
-              />
+              <BlogImageLightbox src={imageSrc} alt={item.title} />
             )} 
             {showIframe && item.videos !== undefined && item.videos ? (
               <iframe width="100%" height="250"
