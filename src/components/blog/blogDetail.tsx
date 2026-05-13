@@ -100,6 +100,7 @@ function renderRichParagraph(text: string, paragraphIndex: number): React.ReactN
 
 const BlogDetail = ({ data }: { data: BlogDataType }) => {
   const preserveLines = Boolean(data.preserveLineBreaks);
+  const imageAtStart = Boolean(data.imageAtStart);
 
   const imageSrc =
     data.images && data.images.length > 0
@@ -107,6 +108,35 @@ const BlogDetail = ({ data }: { data: BlogDataType }) => {
         ? data.images[0]
         : `/${data.images[0]}`
       : null;
+
+  const imageBlock =
+    imageSrc ? (
+      <div className={style.blogdetail_image}>
+        <BlogImageLightbox src={imageSrc} alt={data.title} />
+        {data.imageCaption && (
+          <p className="mt-3 text-center text-gray-600 italic text-sm md:text-base">
+            {data.imageCaption}
+          </p>
+        )}
+      </div>
+    ) : null;
+
+  const contentBlock = (
+    <div
+      className={
+        preserveLines
+          ? `${style.content} ${style.contentPreserveLines}`
+          : style.content
+      }
+    >
+      {data.content?.split('\n\n').map((paragraph, index) => {
+        if (paragraph.trim() === '') return null;
+        return (
+          <p key={index}>{renderRichParagraph(paragraph.trim(), index)}</p>
+        );
+      })}
+    </div>
+  );
 
   return (
     <div className={style.blogdetail}>
@@ -122,29 +152,16 @@ const BlogDetail = ({ data }: { data: BlogDataType }) => {
         )}
         <Items data={data} />
         <h1>{data.title}</h1>
-        <div
-          className={
-            preserveLines
-              ? `${style.content} ${style.contentPreserveLines}`
-              : style.content
-          }
-        >
-          {data.content?.split('\n\n').map((paragraph, index) => {
-            if (paragraph.trim() === '') return null;
-            return (
-              <p key={index}>{renderRichParagraph(paragraph.trim(), index)}</p>
-            );
-          })}
-        </div>
-        {imageSrc && (
-          <div className={style.blogdetail_image}>
-            <BlogImageLightbox src={imageSrc} alt={data.title} />
-            {data.imageCaption && (
-              <p className="mt-3 text-center text-gray-600 italic text-sm md:text-base">
-                {data.imageCaption}
-              </p>
-            )}
-          </div>
+        {imageAtStart ? (
+          <>
+            {imageBlock}
+            {contentBlock}
+          </>
+        ) : (
+          <>
+            {contentBlock}
+            {imageBlock}
+          </>
         )}
       </div>
     </div>

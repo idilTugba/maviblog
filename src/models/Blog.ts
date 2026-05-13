@@ -16,6 +16,8 @@ export interface IBlogPost extends Document {
   detailVariant?: 'default' | 'clean';
   /** true: paragraf içindeki tek Enter ile satır kırılır (hikaye/öykü düzeni) */
   preserveLineBreaks?: boolean;
+  /** true: kapak görseli başlığın hemen altında; false: metnin sonunda */
+  imageAtStart?: boolean;
 }
 
 const blogPostSchema: Schema<IBlogPost> = new mongoose.Schema({
@@ -49,6 +51,10 @@ const blogPostSchema: Schema<IBlogPost> = new mongoose.Schema({
     default: 'default',
   },
   preserveLineBreaks: {
+    type: Boolean,
+    default: false,
+  },
+  imageAtStart: {
     type: Boolean,
     default: false,
   },

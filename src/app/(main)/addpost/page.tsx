@@ -16,6 +16,7 @@ interface formType {
   featured?: boolean;
   detailVariant: 'default' | 'clean';
   preserveLineBreaks?: boolean;
+  imageAtStart?: boolean;
 }
 
 const postValidateSchema = yup.object({
@@ -37,6 +38,7 @@ const postValidateSchema = yup.object({
     .oneOf(['default', 'clean'])
     .required(),
   preserveLineBreaks: yup.boolean().optional().default(false),
+  imageAtStart: yup.boolean().optional().default(false),
 }) as yup.ObjectSchema<formType>;
 
 const AddPost = () => {
@@ -58,6 +60,7 @@ const AddPost = () => {
       featured: false,
       detailVariant: 'default',
       preserveLineBreaks: false,
+      imageAtStart: false,
     },
   });
 
@@ -117,6 +120,7 @@ const AddPost = () => {
           videos: data.videos?.trim() || undefined,
           detailVariant: data.detailVariant,
           preserveLineBreaks: data.preserveLineBreaks ?? false,
+          imageAtStart: data.imageAtStart ?? false,
         };
 
         console.log('Form data:', formData);
@@ -318,6 +322,20 @@ const AddPost = () => {
           >
             + Resim Ekle
           </button>
+          <label className="mt-4 flex items-start gap-2 cursor-pointer">
+            <input
+              {...register('imageAtStart')}
+              type="checkbox"
+              className="mt-1 w-5 h-5 shrink-0"
+            />
+            <span className="text-sm">
+              <span className="font-semibold">Resim yazının başında olsun</span>
+              <span className="block text-gray-600 dark:text-gray-400 mt-0.5">
+                İşaretliyse kapak görseli başlığın hemen altında; işaretsizse metnin
+                sonunda görünür.
+              </span>
+            </span>
+          </label>
         </div>
 
         {/* Resim Altı Yazı */}

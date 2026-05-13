@@ -20,6 +20,8 @@ export interface BlogDataType {
   detailVariant?: 'default' | 'clean';
   /** Öykü metni: tek Enter ile satır sonu korunur */
   preserveLineBreaks?: boolean;
+  /** Kapak görseli başlığın altında */
+  imageAtStart?: boolean;
 }
 
 interface BlogProviderType {
