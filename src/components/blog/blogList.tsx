@@ -8,25 +8,41 @@ import BlogImageLightbox from './BlogImageLightbox';
 const BlogList = function BlogList({
   data,
   className,
+  titlesOnly = false,
 }: {
   data: BlogDataType[];
   className?: string;
+  /** true: yalnızca yazı başlığı (ör. /blog liste sayfası) */
+  titlesOnly?: boolean;
 }) {
   const [showIframe, setShowIframe] = useState(false);
 
   useEffect(() => {
+    if (titlesOnly) return;
     setShowIframe(true);
-  }, []);
+  }, [titlesOnly]);
 
   return (
     <div>
       {data?.map((item, index) => {
-        // Resim path'ini düzelt - public klasöründeki resimler için
-        // images hem string[] hem de string olabilir
+        if (titlesOnly) {
+          return (
+            <article
+              className={`${className} mb-3 border-primary-darksecond dark:border-primary-lightsecond`}
+              key={index + item.title}
+            >
+              <div className="title text-left font-bold text-lg md:text-xl">
+                <Link href={`/blog/${item.id}`} className="text-gray-800 hover:underline">
+                  {item.title}
+                </Link>
+              </div>
+            </article>
+          );
+        }
+
         const getImageSrc = (images: string[] | string | undefined): string | null => {
           if (!images) return null;
-          
-          // Eğer string ise direkt kullan
+
           if (typeof images === 'string') {
             const img = images.trim();
             if (!img) return null;
@@ -34,8 +50,7 @@ const BlogList = function BlogList({
             if (img.startsWith('/')) return img;
             return `/${img}`;
           }
-          
-          // Eğer array ise ilk elemanı al
+
           if (Array.isArray(images) && images.length > 0) {
             const img = images[0].trim();
             if (!img) return null;
@@ -43,25 +58,21 @@ const BlogList = function BlogList({
             if (img.startsWith('/')) return img;
             return `/${img}`;
           }
-          
+
           return null;
         };
 
         const imageSrc = getImageSrc(item.images);
 
         return (
-          
           <article
             className={`${className} mb-4 border-primary-darksecond dark:border-primary-lightsecond`}
             key={index + item.title}
           >
-            {imageSrc && (
-              <BlogImageLightbox src={imageSrc} alt={item.title} />
-            )} 
+            {imageSrc && <BlogImageLightbox src={imageSrc} alt={item.title} />}
             {showIframe && item.videos !== undefined && item.videos ? (
-              <iframe width="100%" height="250"
-                src={item.videos}>
-              </iframe>): <u></u>}
+              <iframe width="100%" height="250" src={item.videos} title={item.title} />
+            ) : null}
 
             <Items data={item} />
             <div className={'title text-left font-bold text-xl'}>

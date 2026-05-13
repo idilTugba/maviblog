@@ -90,6 +90,7 @@ async function ParchementContent() {
                       <BlogList
                         data={groupedData[item]}
                         className={style.leftSide}
+                        titlesOnly
                       />
                     </div>
                   );
